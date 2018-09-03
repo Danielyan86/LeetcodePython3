@@ -52,25 +52,32 @@ class Solution:
 
 
 class Solution2:
+    # 更简单的一种解决方案，因为是直接遍历，时间复杂度还要跟低一些，核心算法时间复杂度是一样的，是O(m*n)，空间上会多出一个为n长度的一维列表
+    # 其实本质上还是A[x][Y]=A[x-1][Y]+A[x][Y-1]，但是巧妙的利用了一个一维列表来维持每行的步数，这样每次数据存的是当前行每一个格子所需步数
+    # 遍历完成之后，res列表最优一个存储就是结果
     def uniquePathsWithObstacles(self, obstacleGrid):
         """
         :type obstacleGrid: List[List[int]]
         :rtype: int
         """
-        res = [0] * len(obstacleGrid[0])  # m x n matrix
+        res = [0] * len(obstacleGrid[0])  # 初始化一个长度为列长度的一维数组，
         res[0] = 1
-        for i in obstacleGrid:
-            for j, each in enumerate(i):
-                if each == 0:
-                    if j != 0:
-                        res[j] += res[j - 1]
+        for line_idx in obstacleGrid:
+            for col_idx, each in enumerate(line_idx):
+                if each == 0:  # 如果值为0，不是障碍
+                    if col_idx != 0:  # 并且索引不为0，不是第一列
+                        res[col_idx] += res[col_idx - 1]  # 则等于列表当前值加上前一项的值，相当于这个列表再一直循环累加
                 else:
-                    res[j] = 0
-        return res[-1]
+                    res[col_idx] = 0  # 是障碍时候则设置值为0
+        return res[-1]  # 返回最后一个
 
 
 if __name__ == '__main__':
-    test_data = [[1, 0]]
+    test_data = [
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0]
+    ]
     s_obj = Solution2()
     res = s_obj.uniquePathsWithObstacles(test_data)
     print(res)
