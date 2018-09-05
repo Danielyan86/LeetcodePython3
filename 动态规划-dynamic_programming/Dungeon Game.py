@@ -36,7 +36,7 @@ class Solution2:
         """
         rows, cols = len(dungeon), len(dungeon[0]),
         if cols == 1:
-            return 0 if dungeon[0][0] > 0 else abs(dungeon[0][0] + 1)
+            return 1 if dungeon[0][0] > 0 else abs(dungeon[0][0]) + 1
         else:
             # min_HP_on_exit = 1
             dungeon[rows - 1][cols - 1] = 1 if 1 - dungeon[rows - 1][cols - 1] < 0 else 1 - dungeon[rows - 1][cols - 1]
@@ -53,6 +53,13 @@ class Solution2:
                         dungeon[row][col] = max(min(dungeon[row + 1][col] - dungeon[row][col],
                                                     dungeon[row][col + 1] - dungeon[row][col]), 1)
             return dungeon[0][0]
+
+
+def test_solition2():
+    test_data = [[0]]
+    s_obj = Solution2()
+    res = s_obj.calculateMinimumHP(test_data)
+    assert res == 1
 
 
 if __name__ == '__main__':
