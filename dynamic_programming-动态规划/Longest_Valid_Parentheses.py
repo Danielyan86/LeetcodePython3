@@ -26,7 +26,40 @@ class Solution:
         return longest
 
 
+class Solution2:
+    def longestValidParentheses(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        # 思路：循环两次，从start到end相差最大的数字。此方法超时
+        s_len = len(s)
+        max_len = 0
+        for start in range(s_len - 1):
+            str_stack = []
+            if s[start] == '(':
+                str_stack.append('(')
+                for end in range(start + 1, s_len):
+                    if s[end] == '(':
+                        str_stack.append('(')
+                    elif s[end] == ')':
+                        if str_stack:
+                            str_stack.pop()
+                            if not str_stack:
+                                max_len = max(max_len, end - start + 1)
+                        else:
+                            break
+            else:
+                continue
+        return max_len
+
+
+def test_Solution2():
+    s_obj = Solution2()
+    assert 4 == s_obj.longestValidParentheses(")()())")
+
+
 if __name__ == '__main__':
-    s_obj = Solution()
-    res = s_obj.longestValidParentheses(")()())")
+    s_obj = Solution2()
+    res = s_obj.longestValidParentheses("((((((())()()()(()))(())))()))")
     print(res)
