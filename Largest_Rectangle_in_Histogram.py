@@ -34,6 +34,7 @@ class Solution2:
         """
         :type heights: List[int]
         :rtype: int
+        """
         pass
 
 
