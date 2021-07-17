@@ -73,12 +73,11 @@ class BinaryTree:
     def middle_order_traverse(self, root_node):
         if root_node:
             if root_node.left:
-                self.traverse_list.append(root_node.val)
-                self.postorder_order_traverse(root_node.left)
+                self.middle_order_traverse(root_node.left)
+            self.traverse_list.append(root_node.val)
 
             if root_node.right:
-                self.postorder_order_traverse(root_node.right)
-
+                self.middle_order_traverse(root_node.right)
             return
         else:
             return
