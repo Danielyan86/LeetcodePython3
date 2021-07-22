@@ -27,11 +27,12 @@ class BinaryTree:
             return
         else:
             # 利用队列先进先出特性，构建完全二叉树
-            # 有子节点则进队列，没有子节点则挂载
+            # 初始化一个空队列，先把根节点放入队列
+            # 根节点出队列，有子节点则进队列，相当于用迭代方式进行层次遍历，没有子节点则挂载，结束循环
             q = queue.Queue()
             q.put(self.root)
             while not q.empty():
-                node = q.get()
+                node = q.get()  # 出队列
                 if node.left is None:
                     node.left = TreeNode(value)
                     return
@@ -43,9 +44,9 @@ class BinaryTree:
                 else:
                     q.put(node.right)
 
+    # 前中后三种方式遍历代码是一样的，只是打印值代码位置不一样
     def preorder_traverse(self, root=None):
         # 递归方式dsf 策略进行遍历
-
         if root:
             self.traverse_list.append(root.val)
             if root.left:
