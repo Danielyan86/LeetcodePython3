@@ -8,7 +8,7 @@
 
 # 如何生成一个1到n的全部二叉搜索树树？
 # 根据二叉树的性质，右节点比根节点大，左节点比根节点小，将进行分范围传入
-# 如果是一个有序数组，有点triky的地方是二叉搜索树不是一个固定的树，
+# 如果是一个有序数组，有点tricky的地方是二叉搜索树不是一个固定的树，
 # 因此即使同一组数放进二叉搜索树也会有多种组合，如何生成所有组合呢？
 # 根据二叉搜索树性质可以将有序数组分段传入，如果只有一个数了，就可以插入
 import random
@@ -28,7 +28,7 @@ class BST:
         self.root = None
         self.traverse_list = []
 
-    def add(self, value, node: TreeNode = None):
+    def add(self, value, node: TreeNode = None):  # 根据搜索二叉树性质进行插入
         if node:
             if value > node.val:
                 if node.right is None:
@@ -64,6 +64,10 @@ class BST:
             return
         else:
             return
+
+    def gen_all_tree(self, squence_list):
+        for num in squence_list:
+            pass
 
 
 if __name__ == '__main__':
