@@ -37,9 +37,9 @@ class SingleLink:
                 return
             current_node = self.head
             while current_node:
-                print(current_node.value)
-                if value > current_node.value:
+                if current_node.value < value <= current_node.next.value:
                     new_node.next = current_node.next
+                    current_node.next = new_node
                 current_node = current_node.next
 
     def traverse_link(self):
@@ -59,8 +59,18 @@ class SingleLink:
 
 
 if __name__ == '__main__':
-    new_link = SingleLink(10)
-    new_link.add_value_to_tail(1)
-    new_link.add_value_to_tail(2)
-    new_link.add_value_to_tail(3)
-    new_link.traverse_link()
+    # new_link = SingleLink(10)
+    # new_link.add_value_to_tail(2)
+    # new_link.add_value_to_tail(1)
+    # new_link.add_value_to_tail(3)
+    # new_link.traverse_link()
+
+    new_link_2 = SingleLink(10)
+    new_link_2.insert_value_by_asc(2)
+    new_link_2.insert_value_by_asc(1)
+    new_link_2.insert_value_by_asc(3)
+    new_link_2.insert_value_by_asc(10)
+    new_link_2.insert_value_by_asc(100)
+    new_link_2.insert_value_by_asc(50)
+
+    new_link_2.traverse_link()
