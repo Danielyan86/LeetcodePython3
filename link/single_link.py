@@ -22,6 +22,26 @@ class SingleLink:
             self.tail.next = current_node
             self.tail = current_node
 
+    def insert_value_by_asc(self, value):
+        if self.head is None:
+            self.head = self.tail = LinkNode(value)
+        else:
+            new_node = LinkNode(value)
+            if value < self.head.value:
+                new_node.next = self.head
+                self.head = new_node
+                return
+            if value > self.tail.value:
+                self.tail.next = new_node
+                self.tail = new_node
+                return
+            current_node = self.head
+            while current_node:
+                print(current_node.value)
+                if value > current_node.value:
+                    new_node.next = current_node.next
+                current_node = current_node.next
+
     def traverse_link(self):
         if self.head is None:
             print("this is an empty link")
