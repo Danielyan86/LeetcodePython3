@@ -42,6 +42,20 @@ class SingleLink:
                     current_node.next = new_node
                 current_node = current_node.next
 
+    def is_loop(self):
+        if self.head is None:
+            return False
+        if self.size == 1:
+            return False
+        slow_pointer = fast_pointer = self.head
+        while fast_pointer and fast_pointer.next:
+
+            fast_pointer = fast_pointer.next.next
+            slow_pointer = slow_pointer.next
+            if fast_pointer is slow_pointer:
+                return True
+        return False
+
     def traverse_link(self):
         if self.head is None:
             print("this is an empty link")
@@ -56,6 +70,11 @@ class SingleLink:
 
     def merge_links(self):
         pass
+
+    def get_node_by_value(self,value):
+        if self.head is None:
+            return False
+
 
 
 if __name__ == '__main__':
@@ -74,3 +93,5 @@ if __name__ == '__main__':
     new_link_2.insert_value_by_asc(50)
 
     new_link_2.traverse_link()
+    print(new_link_2.is_loop())
+    new_link_2.add_value_to_tail()
