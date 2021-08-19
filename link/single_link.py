@@ -71,10 +71,16 @@ class SingleLink:
     def merge_links(self):
         pass
 
-    def get_node_by_value(self,value):
+    def get_node_by_value(self, value):
         if self.head is None:
-            return False
-
+            return None
+        node = self.head
+        while node:
+            if node.value == value:
+                return node
+            else:
+                node = node.next
+        return None
 
 
 if __name__ == '__main__':
@@ -94,4 +100,8 @@ if __name__ == '__main__':
 
     new_link_2.traverse_link()
     print(new_link_2.is_loop())
-    new_link_2.add_value_to_tail()
+    res = new_link_2.get_node_by_value(4)
+    print(res)
+    node = new_link_2.get_node_by_value(100)
+    new_link_2.tail.next = node
+    print(new_link_2.is_loop())
