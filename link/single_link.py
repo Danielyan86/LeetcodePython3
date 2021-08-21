@@ -61,6 +61,7 @@ class SingleLink:
             print("this is an empty link")
         else:
             current_node = self.head
+            print("start to traverse link")
             while current_node:
                 print(current_node.value)
                 current_node = current_node.next
@@ -82,13 +83,26 @@ class SingleLink:
                 node = node.next
         return None
 
+    def reverse_like(self):
+        if self.head is None:
+            return None
+        new_tail = new_head = self.head
+        next_node = self.head.next
+        new_tail.next = None
+        while next_node:
+            temp_node = next_node
+            next_node = next_node.next
+            temp_node.next = new_head
+            new_head = temp_node
+        self.head, self.tail = new_head, new_tail
+
 
 if __name__ == '__main__':
-    # new_link = SingleLink(10)
-    # new_link.add_value_to_tail(2)
-    # new_link.add_value_to_tail(1)
-    # new_link.add_value_to_tail(3)
-    # new_link.traverse_link()
+    new_link = SingleLink(10)
+    new_link.add_value_to_tail(2)
+    new_link.add_value_to_tail(1)
+    new_link.add_value_to_tail(3)
+    new_link.traverse_link()
 
     new_link_2 = SingleLink(10)
     new_link_2.insert_value_by_asc(2)
@@ -99,9 +113,16 @@ if __name__ == '__main__':
     new_link_2.insert_value_by_asc(50)
 
     new_link_2.traverse_link()
-    print(new_link_2.is_loop())
-    res = new_link_2.get_node_by_value(4)
-    print(res)
-    node = new_link_2.get_node_by_value(100)
-    new_link_2.tail.next = node
-    print(new_link_2.is_loop())
+    new_link_2.reverse_like()
+    new_link_2.traverse_link()
+
+    new_link_3 = SingleLink(10)
+    new_link_3.insert_value_by_asc(2)
+    new_link_3.insert_value_by_asc(1)
+    new_link_3.traverse_link()
+    # print(new_link_2.is_loop())
+    # res = new_link_2.get_node_by_value(4)
+    # print(res)
+    # node = new_link_2.get_node_by_value(100)
+    # new_link_2.tail.next = node
+    # print(new_link_2.is_loop())
