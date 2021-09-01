@@ -72,9 +72,6 @@ class Solution:
         return get_list
 
 
-# write code here
-
-
 if __name__ == '__main__':
     s = Solution()
     res = s.LRU([[1, 1, 1], [1, 2, 2], [1, 3, 2], [2, 1], [1, 4, 4], [2, 2]], 3)
