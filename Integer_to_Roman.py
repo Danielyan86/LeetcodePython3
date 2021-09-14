@@ -10,7 +10,7 @@ class Solution:
 
         rome_str = ""
         lable = 1
-        if num > 0 and num < 4000:
+        if 0 < num < 4000:
             while num != 0:
                 res = num % 10
                 rome_str = self.convert_num_into_rome_letter(res, lable) + rome_str
@@ -32,6 +32,7 @@ class Solution:
             return num_list[1] + (num - 5) * num_list[0]
         elif num == 9:
             return num_list[0] + num_list[2]
+
 
 if __name__ == '__main__':
     s_obj = Solution()
