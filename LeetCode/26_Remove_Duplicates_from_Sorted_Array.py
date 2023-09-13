@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Solution:
     def removeDuplicates(self, nums):
         """
@@ -15,8 +18,26 @@ class Solution:
         print(nums)
         return i
 
+    # new version
+    def removeDuplicates2(self, nums: List[int]) -> int:
+        if len(nums) < 2:
+            return len(nums)
+        i = 0
+        j = i + 1
+        while j < len(nums):
+            if nums[i] == nums[j]:
+                del nums[j]
+                continue
+            elif nums[i] < nums[j]:
+                i = i + 1
+                j = i + 1
+        return len(nums)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     s_obj = Solution()
     res = s_obj.removeDuplicates([1, 4, 4, 5, 6, 6, 7])
+    print(res)
+
+    res = s_obj.removeDuplicates2([1, 2, 3])
     print(res)
