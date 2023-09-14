@@ -33,11 +33,35 @@ class Solution:
                 j = i + 1
         return len(nums)
 
+    # 快慢指针实现，相比起第二个实现方案，不会改变原有数组长度，只是把原有的重复数据重新排序
+    # 把重复的数据通过交换方式放到后面去，这样慢指针永远是指到的不重复的一个数字
+    # 判断的细节要多一些，更容易出错
+    def removeDuplicates3(self, nums: List[int]) -> int:
+        if len(nums) < 2:
+            return len(nums)
+        i = 0
+        j = i + 1
+        while j < len(nums):
+            if nums[i] == nums[j]:
+                j = j + 1
+            elif nums[i] < nums[j]:
+                if j - i == 1:
+                    i = i + 1
+                    j = j + 1
+                elif j - i > 1:
+                    i = i + 1
+                    nums[i], nums[j] = nums[j], nums[i]
+                    j = j + 1
+        print(nums)
+        return i + 1
+
 
 if __name__ == "__main__":
     s_obj = Solution()
-    res = s_obj.removeDuplicates([1, 4, 4, 5, 6, 6, 7])
+    res = s_obj.removeDuplicates([1, 4, 4, 4, 5, 6, 6, 7])
     print(res)
 
     res = s_obj.removeDuplicates2([1, 2, 3])
+    print(res)
+    res = s_obj.removeDuplicates3([1, 4, 4, 4, 5, 6, 6, 7])
     print(res)
