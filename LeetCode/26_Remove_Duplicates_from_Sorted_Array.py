@@ -39,21 +39,21 @@ class Solution:
     def removeDuplicates3(self, nums: List[int]) -> int:
         if len(nums) < 2:
             return len(nums)
-        i = 0
-        j = i + 1
-        while j < len(nums):
-            if nums[i] == nums[j]:
-                j = j + 1
-            elif nums[i] < nums[j]:
-                if j - i == 1:
-                    i = i + 1
-                    j = j + 1
-                elif j - i > 1:
-                    i = i + 1
-                    nums[i], nums[j] = nums[j], nums[i]
-                    j = j + 1
+        slow_p = 0
+        fast_p = slow_p + 1
+        while fast_p < len(nums):
+            if nums[slow_p] == nums[fast_p]:
+                fast_p = fast_p + 1
+            elif nums[slow_p] < nums[fast_p]:
+                if fast_p - slow_p == 1:
+                    slow_p = slow_p + 1
+                    fast_p = fast_p + 1
+                elif fast_p - slow_p > 1:
+                    slow_p = slow_p + 1
+                    nums[slow_p], nums[fast_p] = nums[fast_p], nums[slow_p]
+                    fast_p = fast_p + 1
         print(nums)
-        return i + 1
+        return slow_p + 1
 
 
 if __name__ == "__main__":
