@@ -1,3 +1,6 @@
+from typing import List
+
+
 class LinkNode:
     def __init__(self, value):
         self.next = None
@@ -66,8 +69,13 @@ class SingleLink:
                 print(current_node.value)
                 current_node = current_node.next
 
-    def generate_link(self, num_list):
-        pass
+    def generate_link(self, num_list: List[int]):
+        self.head = LinkNode(num_list[0])
+        node = self.head
+        if len(num_list) > 1:
+            for num in num_list[1:]:
+                node.next = LinkNode(num)
+                node = node.next
 
     def merge_links(self):
         pass
@@ -120,9 +128,11 @@ if __name__ == '__main__':
     new_link_3.insert_value_by_asc(2)
     new_link_3.insert_value_by_asc(1)
     new_link_3.traverse_link()
-    # print(new_link_2.is_loop())
-    # res = new_link_2.get_node_by_value(4)
-    # print(res)
-    # node = new_link_2.get_node_by_value(100)
-    # new_link_2.tail.next = node
-    # print(new_link_2.is_loop())
+
+    new_link_4 = SingleLink(10)
+    new_link_4.generate_link(list(range(5)))
+    new_link_4.traverse_link()
+
+    new_link_4 = SingleLink(10)
+    new_link_4.generate_link([3,4,6,10])
+    new_link_4.traverse_link()

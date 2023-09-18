@@ -268,3 +268,5 @@ cython_debug/
 #.idea/
 
 sandbox.py
+.vscode
+LeetcodePython3.code-workspace
