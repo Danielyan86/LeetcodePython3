@@ -12,6 +12,7 @@ class LRUCache:
         self.dic = dict()
         self.capacity = capacity
         self.size = 0
+        # initialize a root node
         self.root = ListNode(0, 0)
 
     def get(self, key: int) -> int:
