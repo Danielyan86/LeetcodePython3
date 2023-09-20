@@ -40,7 +40,8 @@ class LRUCache:
             self.size += 1
 
     def removeFromList(self, node):
-        if node == self.root: return
+        if node == self.root:
+            return
         prev_node = node.prev
         next_node = node.next
         prev_node.next = next_node
@@ -55,7 +56,8 @@ class LRUCache:
         node.next = head_node
 
     def removeFromTail(self):
-        if self.size == 0: return
+        if self.size == 0:
+            return
         tail_node = self.root.prev
         del self.dic[tail_node.key]
         self.removeFromList(tail_node)

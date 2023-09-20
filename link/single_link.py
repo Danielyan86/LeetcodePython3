@@ -134,5 +134,5 @@ if __name__ == '__main__':
     new_link_4.traverse_link()
 
     new_link_4 = SingleLink(10)
-    new_link_4.generate_link([3,4,6,10])
+    new_link_4.generate_link([3, 4, 6, 10])
     new_link_4.traverse_link()
