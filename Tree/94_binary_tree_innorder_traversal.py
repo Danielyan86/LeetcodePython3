@@ -13,6 +13,7 @@ class TreeNode:
 class Solution:
     # 使用栈的数据结构解决这个问题的一个原因是binary tree的travseral order和处理数据oder不一致
     # 先travseral后处理，刚好符合stack的特性
+    # 需要注意的是所有节点需要全部入栈
     def inorderTraversal(self, root: TreeNode) -> List[int]:
         # 当根节点不为空或者栈不为空，从根节点开始
         # 若有左节点，则一直压栈
