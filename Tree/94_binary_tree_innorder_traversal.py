@@ -33,6 +33,7 @@ class Solution:
                 root = root.left
             # 当前节点为空，证明走到了最左边，从栈中弹出节点加入结果数组
             # 开始对右子树重复上述过程。
+            # 入栈的时候已经走了左树了，出栈走右边就行了
             else:
                 root = stack.pop()
                 res.append(root.val)
