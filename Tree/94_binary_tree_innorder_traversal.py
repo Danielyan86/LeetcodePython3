@@ -47,12 +47,12 @@ class Solution:
         while stack:
             # through pop function iterate the value of node
             color, node = stack.pop()
-            # if the pop up node is noe, end this time loop
+            # if the pop up node is none, end this time loop
             if node is None: continue
             if color == WHITE:
             # the order of entering the stack is oppisite with pop out order
                 stack.append((WHITE, node.right))
-                stack.append((black, node))
+                stack.append((black, node)) # the pop out node is going back to stack, the second entering the stack is for looking the next node
                 stack.append((WHITE, node.left))
             else:
                 res.append(node.val)
