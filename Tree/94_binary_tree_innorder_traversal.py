@@ -39,7 +39,7 @@ class Solution:
                 res.append(root.val)
                 root = root.right
         return res
-    
+
     def inorderTraversal2(self, root: TreeNode) -> List[int]:
         WHITE, black = 0, 1
         res = []
@@ -48,13 +48,13 @@ class Solution:
             # through pop function iterate the value of node
             color, node = stack.pop()
             # if the pop up node is none, end this time loop
-            if node is None: continue
+            if node is None:
+                continue
             if color == WHITE:
-            # the order of entering the stack is oppisite with pop out order
+                # the order of entering the stack is oppisite with pop out order
                 stack.append((WHITE, node.right))
-                stack.append((black, node)) # the pop out node is going back to stack, the second entering the stack is for looking the next node
+                stack.append((black, node))
                 stack.append((WHITE, node.left))
             else:
                 res.append(node.val)
         return res
-
