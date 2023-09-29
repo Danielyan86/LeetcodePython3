@@ -32,7 +32,8 @@ class Solution:
             res.append(None)
             return res
         for i in range(start, end + 1):  # 遍历元素，相当于把集合里面元素挨个放到根节点进行遍历
-            lefts = self.get_trees(start, i - 1)  # i刚好是当前节点，左边范围是1到i，右边是i+1 到结束
+            # i刚好是当前节点，左边范围是1到i，右边是i+1 到结束
+            lefts = self.get_trees(start, i - 1)
             rights = self.get_trees(i + 1, end)
             for j in range(len(lefts)):
                 for k in range(len(rights)):
