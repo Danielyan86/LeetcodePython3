@@ -12,7 +12,8 @@ class Solution:
         :rtype: ListNode
         """
         if l1 and l2:
-            l1_list, l2_list = self.convert_node_into_list(l1), self.convert_node_into_list(l2)
+            l1_list, l2_list = self.convert_node_into_list(
+                l1), self.convert_node_into_list(l2)
             new_list = sorted(l1_list + l2_list)
         elif l1:
             return l1

@@ -48,7 +48,8 @@ class Solution2:
                     if pa[start + 1][end - 1] and s[start] == s[end] and pa[start][end] == None:
                         pa[start][end] = True
                         if end - start + 1 > longest_le:
-                            longest_le, longest_str = end - start + 1, s[start:end + 1]
+                            longest_le, longest_str = end - \
+                                start + 1, s[start:end + 1]
             return longest_str
         else:
             return ""

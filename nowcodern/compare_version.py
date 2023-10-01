@@ -3,7 +3,7 @@ class Solution:
         ver_num_list1, ver_num_list2 = version1.split("."), version2.split(".")
         ver_num_list1 = [int(n) for n in ver_num_list1]
         ver_num_list2 = [int(n) for n in ver_num_list2]
-        while ver_num_list1[-1] ==0:
+        while ver_num_list1[-1] == 0:
             ver_num_list1.pop()
         while ver_num_list2[-1] == 0:
             ver_num_list2.pop()

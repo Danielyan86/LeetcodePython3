@@ -21,7 +21,8 @@ class Solution:
         path_martrix = [[1 for i in range(m)] for j in range(n)]
         for line in range(1, n):  # 从第二行第二列开始遍历矩阵
             for col in range(1, m):
-                path_martrix[line][col] = path_martrix[line - 1][col] + path_martrix[line][col - 1]  # 推导式
+                path_martrix[line][col] = path_martrix[line -
+                                                       1][col] + path_martrix[line][col - 1]  # 推导式
         return path_martrix[n - 1][m - 1]  # 返回矩阵最右下角的值
 
 

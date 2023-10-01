@@ -12,7 +12,8 @@ class Solution:
         :rtype: ListNode
         """
         if lists:
-            temp_list = list(filter(lambda x: x != None, lists))  # 过滤出空链表,返回是一个迭代器，需要转化成列表，否则下一句判断空列表无法生效
+            # 过滤出空链表,返回是一个迭代器，需要转化成列表，否则下一句判断空列表无法生效
+            temp_list = list(filter(lambda x: x != None, lists))
             if temp_list:
                 temp_list = map(self.convert_node_into_list, temp_list)
                 extend_list = []

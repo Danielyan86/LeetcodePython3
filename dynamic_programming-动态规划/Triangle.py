@@ -9,7 +9,8 @@ class Solution:
         triangle = triangle[:-1]
         for num_line in reversed(triangle):
             for index, value in enumerate(num_line):
-                count_list[index] = value + min(count_list[index], count_list[index + 1])
+                count_list[index] = value + \
+                    min(count_list[index], count_list[index + 1])
         return count_list[0]
 
 

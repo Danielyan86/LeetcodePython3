@@ -29,6 +29,7 @@ class Solution:
                 Rectangle_area = max(Rectangle_area, width * height)
         return Rectangle_area
 
+
 class Solution2:
     def largestRectangleArea(self, heights):
         """

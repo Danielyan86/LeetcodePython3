@@ -41,7 +41,8 @@ class Solution:
         maxArea = 0
         point_l, point_r = 0, len(height) - 1
         while point_l < point_r:
-            temp_area = min(height[point_l], height[point_r]) * (point_r - point_l)
+            temp_area = min(height[point_l],
+                            height[point_r]) * (point_r - point_l)
             maxArea = max(temp_area, maxArea)
             if height[point_l] <= height[point_r]:
                 point_l = point_l + 1

@@ -42,6 +42,7 @@ class MyQueue(object):
         else:
             return True
 
+
 if __name__ == '__main__':
     # Your MyQueue object will be instantiated and called as such:
     obj = MyQueue()

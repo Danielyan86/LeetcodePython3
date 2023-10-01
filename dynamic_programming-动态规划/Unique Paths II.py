@@ -47,7 +47,7 @@ class Solution:
                                                           Grid[line_index][col_index - 1])
                     else:
                         Grid[line_index][col_index] = Grid[line_index - 1][col_index] + \
-                                                      Grid[line_index][col_index - 1]
+                            Grid[line_index][col_index - 1]
         return Grid[lines - 1][cols - 1]
 
 
@@ -66,7 +66,8 @@ class Solution2:
             for col_idx, each in enumerate(line_idx):
                 if each == 0:  # 如果值为0，不是障碍
                     if col_idx != 0:  # 并且索引不为0，不是第一列
-                        res[col_idx] += res[col_idx - 1]  # 则等于列表当前值加上前一项的值，相当于这个列表再一直循环累加
+                        # 则等于列表当前值加上前一项的值，相当于这个列表再一直循环累加
+                        res[col_idx] += res[col_idx - 1]
                 else:
                     res[col_idx] = 0  # 是障碍时候则设置值为0
         return res[-1]  # 返回最后一个

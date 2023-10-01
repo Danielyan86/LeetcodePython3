@@ -20,7 +20,6 @@ class BSTIterator(object):
         """
         :rtype: bool
         """
-        
 
     def next(self):
         """
