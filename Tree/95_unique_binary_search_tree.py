@@ -1,9 +1,10 @@
 # 定义：二叉查找树，又被称为二叉搜索树。其特点如下：设x为二叉查找树中的一个结点，x节点包含关键字key，一句话就是左孩子比父节点小，右孩子比父节点大，
 # 还有一个特性就是”中序遍历“可以让结点有序。
+# 关键词——分治，递归，回溯
 
 # 思路，先要明白什么是二叉搜索树。生成二叉搜索树，然后按照前序遍历方法输出成list集合
 # 为什么前序遍历有NULL？
-# 返回是一个根节点list集合，而不是例题中嵌套的list
+# 返回是一个根节点list集合，而不是例题中嵌套的list, 注意看方法返回的类型
 from typing import List
 
 
@@ -22,8 +23,7 @@ class Solution:
         return self.get_trees(1, n)
 
     def get_trees(self, start, end) -> List:
-        # 这个方法实际上是用来生成二叉树根节点集合的,
-        # recursive solve this problem
+        # use recursive method to solve this problem
         # 通过递归方法，先生成左边节点，再生成右边节点，最后挂在根节点上面，
         # 如果左边不是一个单节点而是一个数，就继续递归，直到只是一个单节点为止
         # 这个题难点是边界值判断
