@@ -35,6 +35,7 @@ class Solution:
             # i刚好是当前节点，左边范围是1到i，右边是i+1 到结束
             lefts = self.get_trees(start, i - 1)
             rights = self.get_trees(i + 1, end)
+            # 所谓的笛卡尔积通过这两个for循环实现
             for j in range(len(lefts)):
                 for k in range(len(rights)):
                     # root point
