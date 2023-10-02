@@ -44,9 +44,30 @@ class Solution:
                     res.append(root)
         return res
 
+    def traverse_tree_preorder(self, root_node):
+        stack, res = [], []
+        WHITE, BLACK = 1, 0
+        stack.append((root_node, WHITE))
+        while stack:
+            # print("stack", stack)
+            node, color = stack.pop()
+            # print(node, color)
+            # print(node, color)
+            if node is None:
+                continue
+            if color == WHITE:
+                stack.append((node.right, WHITE))
+                stack.append((node.left, WHITE))
+                stack.append((node, BLACK))
+            else:
+                res.append(node.val)
+        return res
+
 
 if __name__ == '__main__':
     s = Solution()
     tree_node_list = s.generateTrees(3)
-    for l in tree_node_list:
-        print(l.val)
+    for node in tree_node_list:
+        # print(node.val)
+        res = s.traverse_tree_preorder(node)
+        print(res)
