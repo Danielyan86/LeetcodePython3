@@ -45,49 +45,41 @@ class BinaryTree:
                     q.put(node.right)
 
     # 前中后三种方式遍历代码是一样的，只是打印值代码位置不一样
+    # 递归方式dsf 策略进行遍历 因为每个节点都要走一次，打印或者说取值只需要一次
+    # 前中后序刚好是取值这行代码在代码中的位置
     def preorder_traverse(self, root=None):
-        # 递归方式dsf 策略进行遍历
-        if root:
+        if root is None:
+            return
+    # if the root is not None,it must have 2 sub-node
+    # there is no need for extra condition for left or right tree judgement
+        self.traverse_list.append(root.val)
+        self.preorder_traverse(root.left)
+        self.preorder_traverse(root.right)
+
+    def postorder_traverse(self, root=None):
+        if root is None:
+            return
+        else:
+            self.postorder_traverse(root.left)
+            self.postorder_traverse(root.right)
             self.traverse_list.append(root.val)
-            if root.left:
-                self.preorder_traverse(root.left)
-            else:
-                return
-            if root.right:
-                self.preorder_traverse(root.right)
-            else:
-                return
-        else:
-            return
 
-    def postorder_order_traverse(self, root_node):
-        if root_node:
-            if root_node.left:
-                self.postorder_order_traverse(root_node.left)
-            if root_node.right:
-                self.postorder_order_traverse(root_node.right)
-            self.traverse_list.append(root_node.val)
+    def middleorder_traverse(self, root=None):
+        if root is None:
             return
         else:
-            return
-
-    def middle_order_traverse(self, root_node):
-        if root_node:
-            if root_node.left:
-                self.middle_order_traverse(root_node.left)
-            self.traverse_list.append(root_node.val)
-
-            if root_node.right:
-                self.middle_order_traverse(root_node.right)
-            return
-        else:
-            return
+            self.middleorder_traverse(root.left)
+            self.traverse_list.append(root.val)
+            self.middleorder_traverse(root.right)
 
     def delete(self, value):
         pass
 
     def search(self, value):
         pass
+
+    def empty_traverse_list(self):
+        self.traverse_list = []
 
 
 if __name__ == '__main__':
@@ -99,8 +91,8 @@ if __name__ == '__main__':
 
     print(b.traverse_list)
     b.traverse_list = []
-    b.postorder_order_traverse(b.root)
+    b.postorder_traverse(b.root)
     print(b.traverse_list)
     b.traverse_list = []
-    b.middle_order_traverse(b.root)
+    b.middleorder_traverse(b.root)
     print(b.traverse_list)
