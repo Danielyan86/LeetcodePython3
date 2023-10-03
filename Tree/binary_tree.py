@@ -56,6 +56,13 @@ class BinaryTree:
         self.preorder_traverse(root.left)
         self.preorder_traverse(root.right)
 
+    def preorder_traverse_stack(self, root=None):
+        if root is None:
+            return
+        stack = list()
+        stack.append(root)
+        
+
     def postorder_traverse(self, root=None):
         if root is None:
             return
@@ -88,11 +95,12 @@ if __name__ == '__main__':
     b = BinaryTree(value_list)
 
     b.preorder_traverse(b.root)
-
     print(b.traverse_list)
-    b.traverse_list = []
+
+    b.empty_traverse_list()
     b.postorder_traverse(b.root)
     print(b.traverse_list)
-    b.traverse_list = []
+
+    b.empty_traverse_list()
     b.middleorder_traverse(b.root)
     print(b.traverse_list)
