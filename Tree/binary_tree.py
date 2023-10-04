@@ -59,9 +59,19 @@ class BinaryTree:
     def preorder_traverse_stack(self, root=None):
         if root is None:
             return
+        BLACK, WHITE = 0, 1
         stack = list()
-        stack.append(root)
-        
+        stack.append((root, WHITE))
+        while stack:
+            node, color = stack.pop()
+            if node is None:
+                continue
+            if color == WHITE:
+                stack.append((node.right, WHITE))
+                stack.append((node.left, WHITE))
+                stack.append((node, BLACK))
+            elif color == BLACK:
+                self.traverse_list.append(node.val)
 
     def postorder_traverse(self, root=None):
         if root is None:
@@ -103,4 +113,8 @@ if __name__ == '__main__':
 
     b.empty_traverse_list()
     b.middleorder_traverse(b.root)
+    print(b.traverse_list)
+
+    b.empty_traverse_list()
+    b.preorder_traverse_stack(b.root)
     print(b.traverse_list)

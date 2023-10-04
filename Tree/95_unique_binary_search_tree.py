@@ -31,11 +31,14 @@ class Solution:
         if start > end:
             res.append(None)
             return res
-        for i in range(start, end + 1):  # 遍历元素，相当于把集合里面元素挨个放到根节点进行遍历
+        for i in range(start, end +1):  # 遍历元素，相当于把集合里面元素挨个放到根节点进行遍历
             # i刚好是当前节点，左边范围是1到i，右边是i+1 到结束
+            # 注意边界值的设定
             lefts = self.get_trees(start, i - 1)
             rights = self.get_trees(i + 1, end)
             # 所谓的笛卡尔积通过这两个for循环实现
+            # 当是最下层节点时候是，left和right挂的是none
+
             for j in range(len(lefts)):
                 for k in range(len(rights)):
                     # root point
@@ -50,10 +53,7 @@ class Solution:
         WHITE, BLACK = 1, 0
         stack.append((root_node, WHITE))
         while stack:
-            # print("stack", stack)
             node, color = stack.pop()
-            # print(node, color)
-            # print(node, color)
             if node is None:
                 continue
             if color == WHITE:
