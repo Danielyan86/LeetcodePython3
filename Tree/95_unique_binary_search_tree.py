@@ -39,12 +39,12 @@ class Solution:
             # 所谓的笛卡尔积通过这两个for循环实现
             # 当是最下层节点时候是，left和right挂的是none
 
-            for j in range(len(lefts)):
-                for k in range(len(rights)):
+            for node_l in lefts:
+                for node_r in rights:
                     # root point
                     root = TreeNode(i)
-                    root.left = lefts[j]
-                    root.right = rights[k]
+                    root.left = node_l
+                    root.right =node_r
                     res.append(root)
         return res
 
