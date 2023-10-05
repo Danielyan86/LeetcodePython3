@@ -12,6 +12,7 @@ class Solution:
         return self.helper(n, ans)
 
     def helper(self, n, ans):
+        # recursive way to implement
         if n in ans:
             return ans[n]
         res = 0
@@ -19,6 +20,18 @@ class Solution:
             res += self.helper(i, ans) * self.helper(n - i - 1, ans)
         ans[n] = res
         return res
+
+
+class Solution2:
+    def num_trees(self, n: int):
+        G = [0] * (n + 1)
+        G[0], G[1] = 1, 1
+
+        for i in range(2, n + 1):
+            for j in range(1, i + 1):
+                G[i] += G[j - 1] * G[i - j]
+
+        return G[n]
 
 
 if __name__ == "__main__":
