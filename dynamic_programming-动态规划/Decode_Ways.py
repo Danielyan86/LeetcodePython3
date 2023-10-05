@@ -56,7 +56,7 @@ def test_Solution():
     assert 0 == s_obj.numDecodings("301")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     s = "301"
     s_obj = Solution()
     res = s_obj.numDecodings(s)

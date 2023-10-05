@@ -27,7 +27,7 @@ class Solution:
         return number_list
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(list(range(10)))
     tree_obj = tree.BinaryTree(list(range(10)))
     print(tree_obj.traverse_list)

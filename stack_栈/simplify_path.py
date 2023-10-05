@@ -28,7 +28,7 @@ def test_solution():
     assert "/" == solution.simplifyPath("/..")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     solution = Solution()
     # res = solution.simplifyPath("/home/")
 

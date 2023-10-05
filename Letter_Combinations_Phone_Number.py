@@ -2,8 +2,16 @@ import itertools
 
 
 class Solution:
-    dic_number = {"2": "abc", "3": "def", "4": "ghi", "5": "jkl",
-                  "6": "mno", "7": "pqrs", "8": "tuv", "9": "wxyz"}
+    dic_number = {
+        "2": "abc",
+        "3": "def",
+        "4": "ghi",
+        "5": "jkl",
+        "6": "mno",
+        "7": "pqrs",
+        "8": "tuv",
+        "9": "wxyz",
+    }
 
     def letterCombinations(self, digits):
         """
@@ -46,7 +54,7 @@ class Solution:
         # return ["{0}{1}".format(item[0], item[1]) for item in list(itertools.combinations(str_res, 2))]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     number_string = "234"
     s_obj = Solution()
     print(s_obj.letterCombinations(number_string))

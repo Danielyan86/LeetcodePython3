@@ -10,6 +10,6 @@ def count_words_in_file(filename):
     return word_count
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     res = count_words_in_file("word_count_test.txt")
     print(res)

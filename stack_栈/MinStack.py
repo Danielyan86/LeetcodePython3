@@ -1,5 +1,4 @@
 class MinStack:
-
     def __init__(self):
         """
         initialize your data structure here.
@@ -56,7 +55,7 @@ def test_minstack():
     obj.push(1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     obj = MinStack()
     obj.push(4)
     obj.push(6)

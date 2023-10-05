@@ -56,7 +56,7 @@ class Solution:
                         res = three_sum
                 elif diff == 0:
                     return three_sum
-            # don't forget to update the diff_abs
+                # don't forget to update the diff_abs
                 diff_abs = min(abs(diff), diff_abs)
         return res
 
@@ -64,7 +64,7 @@ class Solution:
 
 
 # 无穷大怎么设定，绝对值内置函数的调用
-if __name__ == '__main__':
+if __name__ == "__main__":
     nums = [0, 2, 1, -3]
     s_obj = Solution()
     print(s_obj.threeSumClosest(nums, 1))

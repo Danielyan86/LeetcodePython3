@@ -11,7 +11,7 @@ class Solution:
                 return s
             for i in range(len(s) - 1, 0, -1):
                 for j in range(0, len(s) - i + 1):
-                    sub_str = s[j:j + i]
+                    sub_str = s[j : j + i]
                     if sub_str == sub_str[::-1]:
                         return sub_str
         else:
@@ -41,15 +41,21 @@ class Solution2:
                 if i < s_len - 1:
                     pa[i][i + 1] = True if s[i] == s[i + 1] else False
                     if pa[i][i + 1]:
-                        longest_le, longest_str = 2, s[i:i + 2]
+                        longest_le, longest_str = 2, s[i : i + 2]
 
             for start in reversed(range(s_len)):
                 for end in range(start + 1, s_len):
-                    if pa[start + 1][end - 1] and s[start] == s[end] and pa[start][end] == None:
+                    if (
+                        pa[start + 1][end - 1]
+                        and s[start] == s[end]
+                        and pa[start][end] == None
+                    ):
                         pa[start][end] = True
                         if end - start + 1 > longest_le:
-                            longest_le, longest_str = end - \
-                                start + 1, s[start:end + 1]
+                            longest_le, longest_str = (
+                                end - start + 1,
+                                s[start : end + 1],
+                            )
             return longest_str
         else:
             return ""
@@ -66,7 +72,7 @@ def test_solution2():
     assert s_obj.longestPalindrome("abacab") == "bacab"
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     s_obj = Solution2()
     res = s_obj.longestPalindrome("abacab")
     print(res)

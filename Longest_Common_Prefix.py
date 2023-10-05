@@ -58,7 +58,9 @@ class Solution:
                         shortest_len = shortest_len - 1
                         while shortest_len >= 0:
                             if strs[i].startswith(longest_common_prefix[:shortest_len]):
-                                longest_common_prefix = longest_common_prefix[:shortest_len]
+                                longest_common_prefix = longest_common_prefix[
+                                    :shortest_len
+                                ]
                                 break
                             shortest_len = shortest_len - 1
                 else:
@@ -68,7 +70,7 @@ class Solution:
             return ""
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     s_obj = Solution()
     res = s_obj.longestCommonPrefix_improved(["flower", "flow", "flight"])
     print(res)

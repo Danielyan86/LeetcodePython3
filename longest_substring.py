@@ -45,10 +45,10 @@ class Solution(object):
         return max_len
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     start = time.clock()
     s_obj = Solution()
     print(s_obj.lengthOfLongestSubstring("hwwsueopsgokfmivjbeppgreozwuud"))
 
     end = time.clock()
-    print('Running time: %s Seconds' % (end - start))
+    print("Running time: %s Seconds" % (end - start))

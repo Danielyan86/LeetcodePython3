@@ -17,7 +17,7 @@ class Solution:
         return True if not bracket_stack else False
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     s = Solution()
     print(s.isValid("{"))
     print(s.isValid("{}"))

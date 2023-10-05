@@ -26,11 +26,13 @@ class Solution:
                 number_list.append(current_node.val)
                 current_node = current_node.left  # 寻找左节点
             last_node = nodes_stack.pop()  # 寻找右 节点
-            current_node = last_node.right  # 即使右节点为none，还是给当前值，这样不会再次进入寻找左节点的第二层循环，继续弹出栈的最后一个值
+            current_node = (
+                last_node.right
+            )  # 即使右节点为none，还是给当前值，这样不会再次进入寻找左节点的第二层循环，继续弹出栈的最后一个值
         return number_list
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     node4 = TreeNode(4)
     node2 = TreeNode(2)
     node2.left = node4

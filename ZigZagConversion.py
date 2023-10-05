@@ -20,7 +20,7 @@ class Solution:
                         table.append(line)
                         break
                 elif numRows > len(s):
-                    line = list(s[0:len(s)])
+                    line = list(s[0 : len(s)])
                     line = line + [""] * (numRows - len(s))
                     table.append(line)
                     break
@@ -75,7 +75,7 @@ class Solution:
             return res_s
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     s_obj = Solution()
     res = s_obj.convert("PAYPALISHIRING", 4)
     print(res)

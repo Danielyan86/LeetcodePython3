@@ -1,5 +1,4 @@
 class MyQueue(object):
-
     def __init__(self):
         """
         Initialize your data structure here.
@@ -43,7 +42,7 @@ class MyQueue(object):
             return True
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # Your MyQueue object will be instantiated and called as such:
     obj = MyQueue()
     obj.push(1)

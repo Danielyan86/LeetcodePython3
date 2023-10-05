@@ -31,7 +31,7 @@ class Solution:
                 return 0
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     s_obj = Solution()
     res = s_obj.myAtoi("+1")
     print(res)

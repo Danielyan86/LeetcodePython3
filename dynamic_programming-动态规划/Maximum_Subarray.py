@@ -13,7 +13,7 @@ class Solution:
         return max(nums)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     s_obj = Solution()
     res = s_obj.maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4])
     print(res)

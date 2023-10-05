@@ -13,6 +13,6 @@ class Solution:
         return len(nums)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     s_obj = Solution()
     print(s_obj.removeElement(nums=[0, 1, 2, 2, 3, 0, 4, 2], val=2))

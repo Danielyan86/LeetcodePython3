@@ -4,6 +4,7 @@
 # 思路：到达一个点只有两条路径，算出到达每一个点的最小值即可
 # 更新二位数组的值即可
 
+
 class Solution:
     def minPathSum(self, grid):
         """
@@ -24,16 +25,16 @@ class Solution:
                     elif col_dix == 0 and line_dix != 0:  # 第一列赋值
                         grid[line_dix][col_dix] += grid[line_dix - 1][col_dix]
                     else:  # 求最小值，到达一个点只有两条路径，向下和向右，选择更小的一个值
-                        grid[line_dix][col_dix] = min(grid[line_dix - 1][col_dix], grid[line_dix][col_dix - 1]) + grid[
-                            line_dix][col_dix]
+                        grid[line_dix][col_dix] = (
+                            min(
+                                grid[line_dix - 1][col_dix], grid[line_dix][col_dix - 1]
+                            )
+                            + grid[line_dix][col_dix]
+                        )
             return grid[line_dix][col_dix]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     s_obj = Solution()
-    res = s_obj.minPathSum([
-        [1, 3, 1],
-        [1, 5, 1],
-        [4, 2, 1]
-    ])
+    res = s_obj.minPathSum([[1, 3, 1], [1, 5, 1], [4, 2, 1]])
     print(res)

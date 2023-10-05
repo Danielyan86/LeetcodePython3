@@ -34,7 +34,7 @@ def test_happy_scenario():
     assert verify_ip_address("192.AA.01.1") is False
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     test_ip_1 = ["192.168.01.1"]
     for ip in test_ip_1:
         res = verify_ip_address(ip)

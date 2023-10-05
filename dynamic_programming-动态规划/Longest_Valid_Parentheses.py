@@ -13,11 +13,11 @@ class Solution:
 
         longest, start, indices = 0, -1, []
         for i in range(len(s)):
-            if s[i] == '(':
+            if s[i] == "(":
                 indices.append(i)  # 遇到左括号入栈存入索引值
             elif not indices:  # 如果索引栈里面为空，这个时候又来了一个)，则需要重新更新有效括号起始的索引值
                 start = i
-            elif s[i] == ')':  # 遇到右括号开始计算长度
+            elif s[i] == ")":  # 遇到右括号开始计算长度
                 indices.pop()  # 先弹出最后存入的左括号的一个索引值
                 if not indices:  # 如果索引栈里面为空，则
                     longest = max(longest, i - start)
@@ -37,12 +37,12 @@ class Solution2:
         max_len = 0
         for start in range(s_len - 1):
             str_stack = []
-            if s[start] == '(':
-                str_stack.append('(')
+            if s[start] == "(":
+                str_stack.append("(")
                 for end in range(start + 1, s_len):
-                    if s[end] == '(':
-                        str_stack.append('(')
-                    elif s[end] == ')':
+                    if s[end] == "(":
+                        str_stack.append("(")
+                    elif s[end] == ")":
                         if str_stack:
                             str_stack.pop()
                             if not str_stack:
@@ -59,7 +59,7 @@ def test_Solution2():
     assert 4 == s_obj.longestValidParentheses(")()())")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     s_obj = Solution2()
     res = s_obj.longestValidParentheses("((((((())()()()(()))(())))()))")
     print(res)

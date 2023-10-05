@@ -17,7 +17,7 @@ class Solution(object):
     # has the same time complex with the first one
     def twoSum2(self, nums: List[int], target: int) -> List[int]:
         for index, value1 in enumerate(nums):
-            for index2, value2 in enumerate(nums[index + 1:]):
+            for index2, value2 in enumerate(nums[index + 1 :]):
                 if value1 + value2 == target:
                     return [index, index + index2 + 1]
         return []
@@ -28,7 +28,7 @@ class Solution(object):
             value2 = target - value1
             try:
                 # find the target index by buildin method index
-                index2 = nums[index + 1:].index(value2)
+                index2 = nums[index + 1 :].index(value2)
                 if index2 != -1:
                     return [index, index + index2 + 1]
                 else:
@@ -38,7 +38,7 @@ class Solution(object):
         return []
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sum_obj = Solution()
     print(sum_obj.twoSum([2, 11, 8, 12, 13], target=10))
     print(sum_obj.twoSum2([0, 11, 8, 2, 13], target=10))

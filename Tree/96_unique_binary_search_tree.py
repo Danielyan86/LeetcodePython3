@@ -8,10 +8,7 @@ class TreeNode:
 
 class Solution:
     def num_trees(self, n: int):
-        ans = {0: 1,
-               1: 1,
-               2: 2
-               }
+        ans = {0: 1, 1: 1, 2: 2}
         return self.helper(n, ans)
 
     def helper(self, n, ans):
@@ -24,7 +21,7 @@ class Solution:
         return res
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     s = Solution()
     num = s.num_trees(3)
     print(num)

@@ -11,8 +11,7 @@ class Solution:
             for i in range(0, length - 1):
                 for j in range(i + 1, length):
                     hight_min = min(height[i], height[j])
-                    max_water_container = max(
-                        max_water_container, hight_min * (j - i))
+                    max_water_container = max(max_water_container, hight_min * (j - i))
             return max_water_container
         else:
             return 0
@@ -24,8 +23,11 @@ class Solution:
         left_pointer, right_pointer = 1, length - 1
         if length >= 2:
             while left_pointer < right_pointer:
-                max_area = max(min(height[left_pointer], height[right_pointer]) * (right_pointer - left_pointer),
-                               max_area)
+                max_area = max(
+                    min(height[left_pointer], height[right_pointer])
+                    * (right_pointer - left_pointer),
+                    max_area,
+                )
                 if height[left_pointer] < height[right_pointer]:
                     left_pointer = left_pointer + 1
                 else:
@@ -41,8 +43,7 @@ class Solution:
         maxArea = 0
         point_l, point_r = 0, len(height) - 1
         while point_l < point_r:
-            temp_area = min(height[point_l],
-                            height[point_r]) * (point_r - point_l)
+            temp_area = min(height[point_l], height[point_r]) * (point_r - point_l)
             maxArea = max(temp_area, maxArea)
             if height[point_l] <= height[point_r]:
                 point_l = point_l + 1
@@ -51,7 +52,7 @@ class Solution:
         return maxArea
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     height = [1, 8, 6, 2, 5, 4, 8, 3, 7]
     # height = [1, 1]
     s_obj = Solution()

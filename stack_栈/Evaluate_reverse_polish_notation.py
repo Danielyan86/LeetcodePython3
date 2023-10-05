@@ -47,12 +47,14 @@ def test_evalRPN():
     assert 9 == solution.evalRPN(["2", "1", "+", "3", "*"])
     assert 6 == solution.evalRPN(["4", "13", "5", "/", "+"])
     assert 22 == solution.evalRPN(
-        ["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"])
+        ["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"]
+    )
     assert 18 == solution.evalRPN(["18"])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     solution = Solution2()
     res = solution.evalRPN(
-        ["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"])
+        ["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"]
+    )
     print(res)

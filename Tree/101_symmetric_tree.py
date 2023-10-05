@@ -17,4 +17,6 @@ class Solution:
             return True
         if left is None or right is None or left.val != right.val:
             return False
-        return self.isSysmetriRecu(left.left, right.right) and self.isSysmetriRecu(left.right, right.left)
+        return self.isSysmetriRecu(left.left, right.right) and self.isSysmetriRecu(
+            left.right, right.left
+        )

@@ -9,6 +9,7 @@
 #         self.left = None
 #         self.right = None
 
+
 class BSTIterator(object):
     def __init__(self, root):
         """
@@ -31,5 +32,5 @@ class BSTIterator(object):
 # i, v = BSTIterator(root), []
 # while i.hasNext(): v.append(i.next())
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     s_obj = BSTIterator()

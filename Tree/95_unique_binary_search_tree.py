@@ -31,7 +31,7 @@ class Solution:
         if start > end:
             res.append(None)
             return res
-        for i in range(start, end +1):  # 遍历元素，相当于把集合里面元素挨个放到根节点进行遍历
+        for i in range(start, end + 1):  # 遍历元素，相当于把集合里面元素挨个放到根节点进行遍历
             # i刚好是当前节点，左边范围是1到i，右边是i+1 到结束
             # 注意边界值的设定
             lefts = self.get_trees(start, i - 1)
@@ -41,10 +41,9 @@ class Solution:
 
             for node_l in lefts:
                 for node_r in rights:
-                    # root point
                     root = TreeNode(i)
                     root.left = node_l
-                    root.right =node_r
+                    root.right = node_r
                     res.append(root)
         return res
 
@@ -65,7 +64,7 @@ class Solution:
         return res
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     s = Solution()
     tree_node_list = s.generateTrees(3)
     for node in tree_node_list:

@@ -16,7 +16,7 @@ class Solution:
             return index + 1
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     s_obj = Solution()
     res = s_obj.searchInsert([1, 3, 5, 6], 2)
     print(res)

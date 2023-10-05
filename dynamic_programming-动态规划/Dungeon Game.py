@@ -5,6 +5,7 @@
 # 有点像解方程，因为计算机不会自动解方程，需要用逆向思维反推回去
 # 要注意再任意时刻血量不能低于0，即和为正数，要起始值最低，即每一步选择和为最大值
 
+
 class Solution:
     def calculateMinimumHP(self, dungeon):
         """
@@ -24,8 +25,7 @@ class Solution:
             for col_idx in reversed(range(len(dungeon[row_idx]) - 1)):
                 min_HP_on_exit = min(DP[col_idx], DP[col_idx + 1])  # 更新退出血量
                 # 如果是一个负数，则加上一个血量，因为。如果是正数，则减去。如果减去一个正数小于1了，证明这个格子加血量已经够了，则更新为1
-                DP[col_idx] = max(
-                    min_HP_on_exit - dungeon[row_idx][col_idx], 1)
+                DP[col_idx] = max(min_HP_on_exit - dungeon[row_idx][col_idx], 1)
 
         return DP[0]
 
@@ -36,13 +36,19 @@ class Solution2:
         :type dungeon: List[List[int]]
         :rtype: int
         """
-        rows, cols = len(dungeon), len(dungeon[0]),
+        rows, cols = (
+            len(dungeon),
+            len(dungeon[0]),
+        )
         if cols == 1:
             return 1 if dungeon[0][0] > 0 else abs(dungeon[0][0]) + 1
         else:
             # min_HP_on_exit = 1
-            dungeon[rows - 1][cols - 1] = 1 if 1 - dungeon[rows -
-                                                           1][cols - 1] < 0 else 1 - dungeon[rows - 1][cols - 1]
+            dungeon[rows - 1][cols - 1] = (
+                1
+                if 1 - dungeon[rows - 1][cols - 1] < 0
+                else 1 - dungeon[rows - 1][cols - 1]
+            )
             # 遍历二维数组，根据规则，到达每一个格子应该为正数
             for row in reversed(range(rows)):
                 for col in reversed(range(cols)):
@@ -50,13 +56,20 @@ class Solution2:
                         continue
                     elif row == rows - 1:  # 初始化最后一行
                         dungeon[row][col] = max(
-                            dungeon[row][col + 1] - dungeon[row][col], 1)
+                            dungeon[row][col + 1] - dungeon[row][col], 1
+                        )
                     elif col == cols - 1:  # 初始化最后一列
                         dungeon[row][col] = max(
-                            dungeon[row + 1][col] - dungeon[row][col], 1)
+                            dungeon[row + 1][col] - dungeon[row][col], 1
+                        )
                     else:
-                        dungeon[row][col] = max(min(dungeon[row + 1][col] - dungeon[row][col],
-                                                    dungeon[row][col + 1] - dungeon[row][col]), 1)
+                        dungeon[row][col] = max(
+                            min(
+                                dungeon[row + 1][col] - dungeon[row][col],
+                                dungeon[row][col + 1] - dungeon[row][col],
+                            ),
+                            1,
+                        )
             return dungeon[0][0]
 
 
@@ -67,7 +80,7 @@ def test_solition2():
     assert res == 1
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     test_data = [[0]]
     s_obj = Solution()
     res = s_obj.calculateMinimumHP(test_data)

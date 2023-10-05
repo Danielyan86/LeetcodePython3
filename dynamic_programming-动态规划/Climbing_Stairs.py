@@ -4,6 +4,7 @@
 
 # 思路：通过分析发现是一个斐波那契数列，既每一项等于前两项之和，通过动态规划求解，推导式
 
+
 # 递归方法
 class Solution:
     def climbStairs(self, n):
@@ -39,7 +40,7 @@ class Solution2:
             return a
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     test_data = 35
     # s_obj = Solution()
     # res = s_obj.climbStairs(test_data)

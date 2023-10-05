@@ -12,7 +12,7 @@ class Solution:
         Do not return anything, modify root in-place instead.
         """
         node_list = []
-        self.valid(root, float('inf'), float('inf'), node_list)
+        self.valid(root, float("inf"), float("inf"), node_list)
         print(node_list)
         node_list[0].val, node_list[1].val = node_list[1].val, node_list[0].val
         print(node_list)
@@ -35,7 +35,7 @@ class Solution:
         self.valid(root.right, root.val, max_val)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     root = TreeNode(1)
     left = TreeNode(3)
     right = TreeNode(2)

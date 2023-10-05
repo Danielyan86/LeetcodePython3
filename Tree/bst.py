@@ -15,7 +15,7 @@ import random
 
 
 class TreeNode:
-    """ 最小数据结构，一个节点"""
+    """最小数据结构，一个节点"""
 
     def __init__(self, val=None):
         self.val = val
@@ -70,7 +70,7 @@ class BST:
             pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     bst_tree = BST()
     number_list = random.sample(range(1, 10), 9)  # generate
 

@@ -29,7 +29,7 @@ class Solution:
             return 0 if res_int > over_nubmer - 1 else res_int
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     s_obj = Solution()
     # res = s_obj.reverse("-123")
     res = s_obj.reverse_v2("-123")

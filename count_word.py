@@ -15,7 +15,7 @@ def count_characters(long_str: str):
     print("*" * 10)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     count_characters("testeqweqwetertre")
     count_characters("")
     count_characters("test")

@@ -37,7 +37,7 @@ class Solution:
         return converted_list
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     l1_2 = ListNode(2)
     l1 = ListNode(1)
     # l1.next = l1_2

@@ -52,7 +52,6 @@ class SingleLink:
             return False
         slow_pointer = fast_pointer = self.head
         while fast_pointer and fast_pointer.next:
-
             fast_pointer = fast_pointer.next.next
             slow_pointer = slow_pointer.next
             if fast_pointer is slow_pointer:
@@ -105,7 +104,7 @@ class SingleLink:
         self.head, self.tail = new_head, new_tail
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     new_link = SingleLink(10)
     new_link.add_value_to_tail(2)
     new_link.add_value_to_tail(1)

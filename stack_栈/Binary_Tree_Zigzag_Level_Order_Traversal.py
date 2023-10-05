@@ -9,7 +9,6 @@ class TreeNode:
 
 
 class Solution:
-
     def zigzagLevelOrder(self, root):
         """
         :type root: TreeNode
@@ -35,7 +34,7 @@ class Solution:
             self.binary_tree_iterator(binary_node.right, number_list, level)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     node2 = TreeNode(2)
     node3 = TreeNode(3)
     node1 = TreeNode(1)

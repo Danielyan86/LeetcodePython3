@@ -25,8 +25,9 @@ class Solution(object):
             l_num_str = left_list.pop()
             l_temp_list = [int(item) for item in l_num_str.split(",") if item]
             l_temp_list.append(num_list)
-            num_list = l_temp_list + \
-                [int(item) for item in right_list[0].split(",") if item]
+            num_list = l_temp_list + [
+                int(item) for item in right_list[0].split(",") if item
+            ]
         # for r_item in left_list.pop().split("]"):
         #     if num_list:
         #         num_list = [num for num in left_list.pop().split(",")] + num_list + [num for num in r_item.split(
@@ -42,6 +43,6 @@ def test_Solution():
     assert [123, [456, [789]]] == s_obj.deserialize("[123,[456,[789]]]")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     s_obj = Solution()
     res = s_obj.deserialize("[123,456,[788,799,833],[[]],10,[]]")

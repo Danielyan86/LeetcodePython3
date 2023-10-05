@@ -2,7 +2,7 @@ import queue
 
 
 class TreeNode:
-    """ 最小数据结构，一个节点"""
+    """最小数据结构，一个节点"""
 
     def __init__(self, val=None):
         self.val = val
@@ -21,7 +21,6 @@ class BinaryTree:
             self.insert(n)
 
     def insert(self, value):
-
         if self.root is None:
             self.root = TreeNode(value)
             return
@@ -50,8 +49,8 @@ class BinaryTree:
     def preorder_traverse(self, root=None):
         if root is None:
             return
-    # if the root is not None,it must have 2 sub-node
-    # there is no need for extra condition for left or right tree judgement
+        # if the root is not None,it must have 2 sub-node
+        # there is no need for extra condition for left or right tree judgement
         self.traverse_list.append(root.val)
         self.preorder_traverse(root.left)
         self.preorder_traverse(root.right)
@@ -99,7 +98,7 @@ class BinaryTree:
         self.traverse_list = []
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     value_list = list(range(1, 10))
     print(value_list)
     b = BinaryTree(value_list)

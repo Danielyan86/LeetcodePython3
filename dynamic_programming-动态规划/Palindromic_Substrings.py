@@ -1,9 +1,9 @@
 # 题目：给定一个字符串，你的任务是计算这个字符串中有多少个回文子串。
 # 具有不同开始位置或结束位置的子串，即使是由相同的字符组成，也会被计为是不同的子串。
 
+
 # 思路：和最长回文子串类似
 class Solution:
-
     def countSubstrings(self, s):
         """
         :type s: str
@@ -23,7 +23,11 @@ class Solution:
 
             for start in reversed(range(s_len)):
                 for end in range(start + 1, s_len):
-                    if pa[start + 1][end - 1] and s[start] == s[end] and pa[start][end] == None:
+                    if (
+                        pa[start + 1][end - 1]
+                        and s[start] == s[end]
+                        and pa[start][end] == None
+                    ):
                         pa[start][end] = True
                         countStr += 1
             return countStr
@@ -32,7 +36,6 @@ class Solution:
 
 
 class Solution2:
-
     def countSubstrings(self, s):
         """
         :type s: str
@@ -54,7 +57,7 @@ def test_solution():
     assert s_obj.countSubstrings("abc") == 3
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     s_obj = Solution()
     res = s_obj.countSubstrings("abacab")
     print(res)
