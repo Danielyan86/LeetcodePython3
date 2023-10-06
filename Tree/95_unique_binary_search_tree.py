@@ -64,6 +64,9 @@ class Solution:
         return res
 
 
+        
+
+
 if __name__ == "__main__":
     s = Solution()
     tree_node_list = s.generateTrees(3)

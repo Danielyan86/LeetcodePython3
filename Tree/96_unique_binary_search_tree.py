@@ -24,7 +24,6 @@ class Solution:
 
 class Solution2:
     def num_trees(self, n: int):
-        G = [0] * (n + 1)
         G[0], G[1] = 1, 1
 
         for i in range(2, n + 1):
