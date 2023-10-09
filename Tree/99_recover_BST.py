@@ -12,12 +12,10 @@ class Solution:
         """
         node_list = []
         self.valid(root, float("inf"), float("inf"), node_list)
-        print(node_list)
         node_list[0].val, node_list[1].val = node_list[1].val, node_list[0].val
-        print(node_list)
-        print(root)
 
     def valid(self, root, min_val, max_val, node_list=[]):
+        # 递归中列遍历，每一个值应该大于前一个小于后一个，如果不满足条件，拿出来放到列表
         if not root:
             return
         if root.left and root.val < root.left.val:
@@ -26,7 +24,6 @@ class Solution:
             node_list.append(root)
 
         if root.val <= min_val or root.val >= max_val:
-            print("lala", root)
             node_list.append(root)
             return
 
