@@ -7,35 +7,32 @@ class TreeNode:
 
 class Solution:
     def recoverTree(self, root: TreeNode) -> None:
-        """
-        Do not return anything, modify root in-place instead.
-        """
-        node_list = []
-        self.valid(root, float("inf"), float("inf"), node_list)
-        node_list[0].val, node_list[1].val = node_list[1].val, node_list[0].val
+        self.pre = TreeNode(float("-inf"))
+        self.x = None
+        self.y = None
+        self.helper(root)
+        self.x, self.y = self.y, self.x
 
-    def valid(self, root, min_val, max_val, node_list=[]):
-        # 递归中列遍历，每一个值应该大于前一个小于后一个，如果不满足条件，拿出来放到列表
-        if not root:
+    def helper(self, node):
+        if node is None:
             return
-        if root.left and root.val < root.left.val:
-            node_list.append(root)
-        if root.right and root.val > root.right.val:
-            node_list.append(root)
-
-        if root.val <= min_val or root.val >= max_val:
-            node_list.append(root)
-            return
-
-        self.valid(root.left, min_val, root.val)
-        self.valid(root.right, root.val, max_val)
+        self.helper(node.left)
+        self.current = node
+        if self.current.val < self.pre.val:
+            if self.x is None:
+                self.x = self.pre
+            if self.x is not None:
+                self.y = self.current
+        self.pre = self.current
+        self.helper(node.right)
 
 
 if __name__ == "__main__":
     root = TreeNode(1)
-    left = TreeNode(3)
-    right = TreeNode(2)
+    left = TreeNode(2)
+    right = TreeNode(3)
     root.left = left
     root.right = right
     s = Solution()
     s.recoverTree(root)
+    # print(s.root)
