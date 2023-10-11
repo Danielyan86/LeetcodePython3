@@ -6,16 +6,18 @@ class TreeNode:
 
 
 class Solution:
-    def isSymmetric(self, root: TreeNode) -> bool:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
         if root is None:
             return True
-        return self.isSysmetriRecu(root.left, root.right)
+        return self.helper_dfs(root.left, root.right)
 
-    def isSysmetriRecu(self, left, right):
+    def helper_dfs(self, left, right):
         if left is None and right is None:
             return True
-        if left is None or right is None or left.val != right.val:
+        if left is None or right is None:
             return False
-        return self.isSysmetriRecu(left.left, right.right) and self.isSysmetriRecu(
+        if left.val != right.val:  # 需要注意不相等时候提前中断搜索，而不是相等
+            return False
+        return self.helper_dfs(left.left, right.right) and self.helper_dfs(
             left.right, right.left
         )
