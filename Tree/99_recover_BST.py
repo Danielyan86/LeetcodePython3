@@ -8,22 +8,19 @@ class TreeNode:
 class Solution:
     def recoverTree(self, root: TreeNode) -> None:
         self.pre = TreeNode(float("-inf"))
-        self.x = None
-        self.y = None
+        self.x, self.y = None, None
         self.helper(root)
-        self.x, self.y = self.y, self.x
+        self.x.val, self.y.val = self.y.val, self.x.val
 
     def helper(self, node):
         if node is None:
             return
         self.helper(node.left)
-        self.current = node
-        if self.current.val < self.pre.val:
+        if node.val < self.pre.val:
             if self.x is None:
                 self.x = self.pre
-            if self.x is not None:
-                self.y = self.current
-        self.pre = self.current
+            self.y = node
+        self.pre = node
         self.helper(node.right)
 
 
