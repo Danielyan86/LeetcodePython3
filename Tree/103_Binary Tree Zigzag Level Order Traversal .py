@@ -19,6 +19,7 @@ class Solution:
             final_nums.append(num_tmp)
             if not node_queue: break
             num_tmp=[]
+            # 需要注意这个时候从左边进入，右边弹出，进入顺序是右节点先进入，因为下一轮又是从左边出来
             for _ in range(len(node_queue)):
                 node=node_queue.pop()
                 num_tmp.append(node.val)
