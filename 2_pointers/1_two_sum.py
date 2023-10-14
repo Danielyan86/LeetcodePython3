@@ -36,11 +36,21 @@ class Solution(object):
             except Exception as e:
                 print(index2)
         return []
+    
+    def twoSum4(self, nums: List[int], target: int) -> List[int]:
+
+        for index1 in range(len(nums)-1):
+            num1=nums[index1]
+            num2=target-num1
+            if num2 in nums[index+1:]:
+                index2=nums[index1+1:].index(num2)
+                return [index1,index1+index2+1]
+        return []
 
 
 if __name__ == "__main__":
     sum_obj = Solution()
     print(sum_obj.twoSum([2, 11, 8, 12, 13], target=10))
     print(sum_obj.twoSum2([0, 11, 8, 2, 13], target=10))
-    print(sum_obj.twoSum3([3, 2, 4], target=6))
+    print(sum_obj.twoSum4([3, 2, 4], target=6))
 # 这道题能直接想到的就是冒泡排序的算法，但是冒泡算法的时间复杂度高O（n*n）
