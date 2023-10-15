@@ -1,9 +1,10 @@
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+from typing import List,Optional
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
         self.preorder,self.inorder=preorder,inorder
@@ -25,3 +26,9 @@ class Solution:
             # 先序遍历中「从 左边界+1+左子树节点数目 开始到 右边界」的元素就对应了中序遍历中「从 根节点定位+1 到 右边界」的元素
         root.right = self.helper_build_tree(preorder_left + size_left_subtree + 1, preorder_right, inorder_root + 1, inorder_right)
         return root
+
+if __name__ == "__main__":
+    preorder = [3,9,20,]
+    inorder = [9,3,20]
+    s=Solution()
+    s.buildTree(preorder,inorder)
