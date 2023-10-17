@@ -11,47 +11,32 @@ class TreeNode:
 
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
-        self.preorder, self.inorder = preorder, inorder
         n = len(preorder)
-        self.index = {ele: i for i, ele in enumerate(inorder)}
-        return self.helper_build_tree(0, n - 1, 0, n - 1)
+        if 0 == n:
+            return
+        self.p = preorder
+        self.i = inorder
+        return self.buildTree_heler(0, n - 1, 0, n - 1)
 
-    def helper_build_tree(
-        self, preorder_left, preorder_right, inorder_left, inorder_right
-    ):
-        # 传入的四个参数代表是左右子树的下标。左右子树下标重合了代表递归到头了，
-        # 刚开始则是最左边和最右边，类似一个范围
-        if preorder_left > preorder_right:
+    def buildTree_heler(self, inorder_l, inorder_r, preorder_l, preorder_r):
+        if inorder_l > inorder_r:
             return None
 
-        preorder_root = preorder_left
-        inorder_root = self.index[self.preorder[preorder_root]]
-        root = TreeNode(self.preorder[preorder_root])
-
-        size_left_subtree = inorder_root - inorder_left
-        root.left = self.helper_build_tree(
-            preorder_left + 1,
-            preorder_left + size_left_subtree,
-            inorder_left,
-            inorder_root - 1,
+        node = TreeNode(self.p[preorder_l])
+        i_root_index = self.i.index(self.p[preorder_l])
+        left_tree_size = i_root_index - inorder_l
+        node.left = self.buildTree_heler(
+            inorder_l, i_root_index - 1, preorder_l + 1, preorder_l + left_tree_size
         )
-        # 递归地构造右子树，并连接到根节点
-        # 先序遍历中「从 左边界+1+左子树节点数目 开始到 右边界」的元素就对应了中序遍历中「从 根节点定位+1 到 右边界」的元素
-        root.right = self.helper_build_tree(
-            preorder_left + size_left_subtree + 1,
-            preorder_right,
-            inorder_root + 1,
-            inorder_right,
+        node.right = self.buildTree_heler(
+            i_root_index + 1, inorder_r, preorder_l + left_tree_size + 1, preorder_r
         )
-        return root
+        return node
 
 
 if __name__ == "__main__":
-    preorder = [
-        3,
-        9,
-        20,
-    ]
-    inorder = [9, 3, 20]
+    preorder = [3, 9, 20, 15, 7]
+    inorder = [9, 3, 15, 20, 7]
     s = Solution()
-    s.buildTree(preorder, inorder)
+    res = s.buildTree(preorder, inorder)
+    print(res)
