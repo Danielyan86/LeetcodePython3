@@ -14,6 +14,7 @@ class Solution:
                 counts[ord(ch) - ord("a")] += 1
             # use tuple to make the key is a hash balue
             # if the key doesn't exist in mp, it will be created as a new one, that's why we use collections
+            # because we pass the list as factory function, we can use append function here
             mp[tuple(counts)].append(st)
 
         return list(mp.values())
