@@ -1,4 +1,7 @@
-# 巧妙利用python collections.default函数 和默认dict最大一个区别是为空的时候不会抛出异常
+# 巧妙利用ython collections.default函数 和默认dict最大一个区别是为空的时候不会抛出异常
+# 巧妙利用list有序map到26个字母构造字典的key,
+# be cause the list is mutable , it can't be used as dictionary key
+# after using the list factory fucntion, the dictionary can use the append method to append the item to one dict content easily
 from typing import List
 import collections
 
