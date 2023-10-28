@@ -1,26 +1,29 @@
+from typing import List
+
+
+# 两个细节需要注意，S是个单个左右括号组成的list，需要用join函数合成一个string
+# 传入左右括号数目时候，不能够先加一再传入，看起来好像一样，但是这样这样影响了当前一层函数中left的值，只能是传入参数时候+1
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
-        # 难点在于怎么回溯，想想二叉树的遍历
-        ans = []
+        self.res = []
+        self.n = n
+        self.back_trace(0, 0, [])
+        return self.res
 
-        def backtrack(S, left, right):
-            # 递归处理当前状态，三种
-            # 加完括号返回
-            # 优先加左括号
-            # 右括号数目不能大于左边
-            if len(S) == 2 * n:
-                ans.append("".join(S))
-                return
-                # n为几对括号，对应左括号或者右括号总数
-                # 先出现的第一种情况是（（（ ））），然后通过pop方式倒着遍历所有情况
-            if left < n:
-                S.append("(")
-                backtrack(S, left + 1, right)
-                S.pop()
-            if right < left:
-                S.append(")")
-                backtrack(S, left, right + 1)
-                S.pop()
+    def back_trace(self, left, right, S):
+        if len(S) == self.n * 2:
+            self.res.append("".join(S))
+            return
+        if left < self.n:
+            S.append("(")
+            self.back_trace(left + 1, right, S)
+            S.pop()
+        if right < left:
+            S.append(")")
+            self.back_trace(left, right + 1, S)
+            S.pop()
 
-        backtrack([], 0, 0)
-        return ans
+
+if __name__ == "__main__":
+    s = Solution()
+    s.generateParenthesis(3)
