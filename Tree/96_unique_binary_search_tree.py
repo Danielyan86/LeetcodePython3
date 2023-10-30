@@ -23,12 +23,13 @@ class Solution:
 
 
 class Solution2:
-    def num_trees(self, n: int):
+    def numTrees(self, n: int) -> int:
+        G = [0] * (n + 1)
         G[0], G[1] = 1, 1
 
-        for i in range(2, n + 1):
-            for j in range(1, i + 1):
-                G[i] += G[j - 1] * G[i - j]
+        for i in range(2, n + 1):  # i看成最右边节点的边界
+            for j in range(1, i + 1):  # j可以看成对根节点的遍历
+                G[i] += G[j - 1] * G[i - j]  # 笛卡尔积
 
         return G[n]
 
