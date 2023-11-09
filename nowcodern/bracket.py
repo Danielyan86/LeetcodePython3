@@ -7,8 +7,7 @@ class Solution:
             else:
                 if bracket_stack:
                     last_char = bracket_stack.pop()
-                    new_str = last_char + char
-                    if new_str in ["()", "[]", "{}"]:
+                    if f"{last_char}{char}" in ["()", "[]", "{}"]:
                         continue
                     else:
                         return False
