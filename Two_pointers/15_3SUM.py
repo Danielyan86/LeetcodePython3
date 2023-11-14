@@ -13,7 +13,7 @@ class Solution:
         res = []
         for base_i in range(0, len(nums) - 2):
             base_v = nums[base_i]
-            if base_v > 0:
+            if base_v > 0:  # 至少有一个数字小于0，不可能三个数字大于0
                 break
             point_l, point_r = base_i + 1, len(nums) - 1
             while point_l < point_r:
