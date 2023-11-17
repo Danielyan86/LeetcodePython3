@@ -23,3 +23,14 @@ class Solution:
         if carry == 1:
             num.insert(0, 1)
         return num
+
+    def addToArrayForm2(self, num: List[int], k: int) -> List[int]:
+        carry = 0
+        for i in range(len(num) - 1, -1, -1):
+            carry, num[i] = divmod(num[i] + k % 10 + carry, 10)  # 求和取余数一步搞定
+            k //= 10  # pop out the last number of K
+        while k > 0 or carry == 1:
+            carry, number = divmod(k % 10 + carry, 10)
+            num.insert(0, number)  # insert to first one
+            k //= 10
+        return num
