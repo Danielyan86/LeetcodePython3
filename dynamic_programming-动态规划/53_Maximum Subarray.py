@@ -5,6 +5,8 @@
 # 思维盲点：负数越加越少
 # 推导过程，从一个数，两个数情况开始推导
 
+from typing import List
+
 
 class Solution:
     def maxSubArray(self, nums):
@@ -22,7 +24,18 @@ class Solution:
         return max_sum
 
 
+class Solution2:
+    def maxSubArray(self, nums: List[int]) -> int:
+        dp, max_s = [nums[0]], nums[0]
+        for i, num in range(1, len(nums)):
+            if dp[i - 1] >= 0:
+                dp.append(dp[i - 1] + num)
+            else:
+                dp.append(num) #另起炉灶
+        return max(dp)
+
+
 if __name__ == "__main__":
-    s_obj = Solution()
+    s_obj = Solution2()
     res = s_obj.maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4])
     print(res)
