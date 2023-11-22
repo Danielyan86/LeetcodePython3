@@ -1,6 +1,6 @@
 class LinkNode:
     def __init__(self, key=0, value=0):
-        self.key = key  # 再存一遍key是为了反向找到字典中的key
+        self.key = key  # 再存一遍key是为通过node了反向找到字典中的key
         self.value = value
         self.prev = None
         self.next = None
