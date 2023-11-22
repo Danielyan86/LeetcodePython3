@@ -7,5 +7,4 @@ class Solution:
             sorted_d[j] = sorted_d[j] + 1
             if orgin_d == sorted_d:
                 res += 1
-
         return res
