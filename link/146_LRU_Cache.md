@@ -4,6 +4,8 @@
 - 一共三个方法，删除任意一个节点，添加头节点，删除末尾节点，add node 方法没法通用，因为没法确定要删除哪个位置节点
 -
 
+### use buildin OrderDict
+
 ```python
 from collections import OrderedDict
 
@@ -25,7 +27,6 @@ class LRUCache:
         self.cache[key] = value # add to the end by default
         self.cache.move_to_end(key)
         if len(self.cache) > self.capacity:
-            # If capacity is reached, remove the least recently used item
             self.cache.popitem(last=False) # pop the first item
 
 ```
