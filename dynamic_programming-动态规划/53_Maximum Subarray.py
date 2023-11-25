@@ -31,7 +31,7 @@ class Solution2:
             if dp[i - 1] >= 0:
                 dp.append(dp[i - 1] + num)
             else:
-                dp.append(num) #另起炉灶
+                dp.append(num)  # 另起炉灶
         return max(dp)
 
 

@@ -12,9 +12,7 @@ class Solution(object):
         :type l2: ListNode
         :rtype: ListNode
         """
-        l1_list, l2_list = self.convert_node_into_list(l1), self.convert_node_into_list(
-            l2
-        )
+        l1_list, l2_list = self.convert_node_into_list(l1), self.convert_node_into_list(l2)
         l1_str = ""
         for i in l1_list[::-1]:
             l1_str = l1_str + str(i)

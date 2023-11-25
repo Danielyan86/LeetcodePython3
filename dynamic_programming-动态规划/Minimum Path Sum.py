@@ -26,10 +26,7 @@ class Solution:
                         grid[line_dix][col_dix] += grid[line_dix - 1][col_dix]
                     else:  # 求最小值，到达一个点只有两条路径，向下和向右，选择更小的一个值
                         grid[line_dix][col_dix] = (
-                            min(
-                                grid[line_dix - 1][col_dix], grid[line_dix][col_dix - 1]
-                            )
-                            + grid[line_dix][col_dix]
+                            min(grid[line_dix - 1][col_dix], grid[line_dix][col_dix - 1]) + grid[line_dix][col_dix]
                         )
             return grid[line_dix][col_dix]
 

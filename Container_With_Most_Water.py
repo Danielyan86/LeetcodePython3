@@ -24,8 +24,7 @@ class Solution:
         if length >= 2:
             while left_pointer < right_pointer:
                 max_area = max(
-                    min(height[left_pointer], height[right_pointer])
-                    * (right_pointer - left_pointer),
+                    min(height[left_pointer], height[right_pointer]) * (right_pointer - left_pointer),
                     max_area,
                 )
                 if height[left_pointer] < height[right_pointer]:

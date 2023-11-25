@@ -41,24 +41,15 @@ class Solution:
         for line_index in range(1, lines):
             for col_index in range(1, cols):
                 if Grid[line_index][col_index] != -1:
-                    if (
-                        Grid[line_index - 1][col_index] == -1
-                        and Grid[line_index][col_index - 1] == -1
-                    ):
+                    if Grid[line_index - 1][col_index] == -1 and Grid[line_index][col_index - 1] == -1:
                         continue
-                    elif (
-                        Grid[line_index - 1][col_index] == -1
-                        or Grid[line_index][col_index - 1] == -1
-                    ):
+                    elif Grid[line_index - 1][col_index] == -1 or Grid[line_index][col_index - 1] == -1:
                         Grid[line_index][col_index] = max(
                             Grid[line_index - 1][col_index],
                             Grid[line_index][col_index - 1],
                         )
                     else:
-                        Grid[line_index][col_index] = (
-                            Grid[line_index - 1][col_index]
-                            + Grid[line_index][col_index - 1]
-                        )
+                        Grid[line_index][col_index] = Grid[line_index - 1][col_index] + Grid[line_index][col_index - 1]
         return Grid[lines - 1][cols - 1]
 
 

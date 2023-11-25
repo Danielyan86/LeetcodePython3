@@ -9,9 +9,7 @@ class ListNode:
 
 
 class Solution:
-    def mergeTwoLists(
-        self, list1: Optional[ListNode], list2: Optional[ListNode]
-    ) -> Optional[ListNode]:
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
         if list1 is None and list2 is None:
             return None
         if list1 and not list2:
@@ -43,9 +41,7 @@ class Solution:
 
 
 class Solution2:
-    def mergeTwoLists(
-        self, list1: Optional[ListNode], list2: Optional[ListNode]
-    ) -> Optional[ListNode]:
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
         l1, l2 = list1, list2
         if l1 is None and l2 is None:
             return None

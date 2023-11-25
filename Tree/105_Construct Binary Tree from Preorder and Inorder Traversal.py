@@ -25,12 +25,8 @@ class Solution:
         node = TreeNode(self.p[preorder_l])
         i_root_index = self.i.index(self.p[preorder_l])
         left_tree_size = i_root_index - inorder_l
-        node.left = self.buildTree_heler(
-            inorder_l, i_root_index - 1, preorder_l + 1, preorder_l + left_tree_size
-        )
-        node.right = self.buildTree_heler(
-            i_root_index + 1, inorder_r, preorder_l + left_tree_size + 1, preorder_r
-        )
+        node.left = self.buildTree_heler(inorder_l, i_root_index - 1, preorder_l + 1, preorder_l + left_tree_size)
+        node.right = self.buildTree_heler(i_root_index + 1, inorder_r, preorder_l + left_tree_size + 1, preorder_r)
         return node
 
 

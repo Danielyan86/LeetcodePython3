@@ -44,6 +44,6 @@ class Solution:
                     node_list.append(node.left)
                 if node.right:
                     node_list.append(node.right)
-            node_list=node_tmp_l
+            node_list = node_tmp_l
             res_list.append(res_level)
         return res_list

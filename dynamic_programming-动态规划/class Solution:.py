@@ -10,7 +10,7 @@ class Solution:
         if n + m != t:
             return False
 
-        dp = [[False] * (n+1) for _ in range(m+1)]
+        dp = [[False] * (n + 1) for _ in range(m + 1)]
         dp[0][0] = True
 
         for i in range(m + 1):
@@ -28,5 +28,5 @@ if __name__ == "__main__":
     s1 = "aabcc"
     s2 = "dbbca"
     s3 = "aadbbbaccc"
-    res=s.isInterleave(s1, s2, s3)
+    res = s.isInterleave(s1, s2, s3)
     print(res)

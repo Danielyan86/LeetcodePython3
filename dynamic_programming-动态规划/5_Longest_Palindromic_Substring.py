@@ -69,11 +69,7 @@ class Solution2:
 
             for start in reversed(range(s_len)):
                 for end in range(start + 1, s_len):
-                    if (
-                        pa[start + 1][end - 1]
-                        and s[start] == s[end]
-                        and pa[start][end] == None
-                    ):
+                    if pa[start + 1][end - 1] and s[start] == s[end] and pa[start][end] == None:
                         pa[start][end] = True
                         if end - start + 1 > longest_le:
                             longest_le, longest_str = (

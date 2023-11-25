@@ -19,6 +19,4 @@ class Solution:
         if root.val <= min_val or root.val >= max_val:
             return False
 
-        return self.valid(root.left, min_val, root.val) and self.valid(
-            root.right, root.val, max_val
-        )
+        return self.valid(root.left, min_val, root.val) and self.valid(root.right, root.val, max_val)

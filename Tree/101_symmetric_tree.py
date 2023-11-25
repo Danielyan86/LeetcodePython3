@@ -18,9 +18,7 @@ class Solution:
             return False
         if left.val != right.val:  # 需要注意不相等时候提前中断搜索，而不是相等
             return False
-        return self.helper_dfs(left.left, right.right) and self.helper_dfs(
-            left.right, right.left
-        )
+        return self.helper_dfs(left.left, right.right) and self.helper_dfs(left.right, right.left)
 
 
 class Solution2:

@@ -44,24 +44,16 @@ class Solution2:
             return 1 if dungeon[0][0] > 0 else abs(dungeon[0][0]) + 1
         else:
             # min_HP_on_exit = 1
-            dungeon[rows - 1][cols - 1] = (
-                1
-                if 1 - dungeon[rows - 1][cols - 1] < 0
-                else 1 - dungeon[rows - 1][cols - 1]
-            )
+            dungeon[rows - 1][cols - 1] = 1 if 1 - dungeon[rows - 1][cols - 1] < 0 else 1 - dungeon[rows - 1][cols - 1]
             # 遍历二维数组，根据规则，到达每一个格子应该为正数
             for row in reversed(range(rows)):
                 for col in reversed(range(cols)):
                     if row == rows - 1 and col == cols - 1:
                         continue
                     elif row == rows - 1:  # 初始化最后一行
-                        dungeon[row][col] = max(
-                            dungeon[row][col + 1] - dungeon[row][col], 1
-                        )
+                        dungeon[row][col] = max(dungeon[row][col + 1] - dungeon[row][col], 1)
                     elif col == cols - 1:  # 初始化最后一列
-                        dungeon[row][col] = max(
-                            dungeon[row + 1][col] - dungeon[row][col], 1
-                        )
+                        dungeon[row][col] = max(dungeon[row + 1][col] - dungeon[row][col], 1)
                     else:
                         dungeon[row][col] = max(
                             min(

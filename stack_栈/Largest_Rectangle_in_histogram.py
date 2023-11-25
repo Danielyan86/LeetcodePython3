@@ -40,9 +40,7 @@ class Solution2:
         :type heights: List[int]
         :rtype: int
         """
-        heights.append(
-            -1
-        )  # 末尾添加一个-1，方便我们用索引值相减，求出长方形的宽。假设最后一个柱子为最大的单个柱子,索引值为index，则宽度为len(height)-index
+        heights.append(-1)  # 末尾添加一个-1，方便我们用索引值相减，求出长方形的宽。假设最后一个柱子为最大的单个柱子,索引值为index，则宽度为len(height)-index
         max_area = 0
         stack_index = []
         # 索引值入栈

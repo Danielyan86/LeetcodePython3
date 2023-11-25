@@ -58,9 +58,7 @@ class Solution:
                         shortest_len = shortest_len - 1
                         while shortest_len >= 0:
                             if strs[i].startswith(longest_common_prefix[:shortest_len]):
-                                longest_common_prefix = longest_common_prefix[
-                                    :shortest_len
-                                ]
+                                longest_common_prefix = longest_common_prefix[:shortest_len]
                                 break
                             shortest_len = shortest_len - 1
                 else:

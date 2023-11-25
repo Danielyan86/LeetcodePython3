@@ -23,11 +23,7 @@ class Solution:
 
             for start in reversed(range(s_len)):
                 for end in range(start + 1, s_len):
-                    if (
-                        pa[start + 1][end - 1]
-                        and s[start] == s[end]
-                        and pa[start][end] == None
-                    ):
+                    if pa[start + 1][end - 1] and s[start] == s[end] and pa[start][end] == None:
                         pa[start][end] = True
                         countStr += 1
             return countStr
