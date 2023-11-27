@@ -62,22 +62,64 @@ class LRUCache:
         del self.cache[node.key]
 
 
+class LRUCache2:
+    def __init__(self, capacity: int):
+        self.size = capacity
+        self.cache = dict()
+        self.head, self.tail = LinkNode(), LinkNode()
+        self.head.next, self.tail.pre = self.tail, self.head
+
+    def get(self, key: int) -> int:
+        if key not in self.cache:
+            return -1
+        node = self.cache[key]
+        self.remove_node(node)
+        self.add_tail(node)
+
+    def put(self, key: int, value: int) -> None:
+        if key in self.cache:
+            self.cache[key].value = value
+            self.get(key)
+        else:
+            if len(self.cache) == self.size:
+                node = self.head.next
+                self.remove_node(node)
+                del self.cache[node.key]
+            node = LinkNode(key, value)
+            self.add_tail(node)
+            self.cache[key] = node
+
+    def remove_node(self, node):
+        pre, nt = node.pre, node.next
+        pre.next = nt
+        nt.pre = pre
+        node.pre = node.next = None
+
+    def add_tail(self, node):
+        pre = self.tail.pre
+        pre.next = node
+        node.pre = pre
+        node.next = self.tail
+        self.tail.pre = node
+
+
 # Your LRUCache object will be instantiated and called as such:
 # obj = LRUCache(capacity)
 # param_1 = obj.get(key)
 # obj.put(key,value)
 if __name__ == "__main__":
-    lRUCache = LRUCache(2)
-    lRUCache.put(2, 1)
+    lRUCache = LRUCache2(2)
+    lRUCache.put(1, 1)
     lRUCache.put(2, 2)
     l_dic = lRUCache.cache
+    print(lRUCache.get(1))
     for key in l_dic:
         print(l_dic[key].key, l_dic[key].value)
-    lRUCache.put(3, 3)
-    l_dic = lRUCache.cache
-    for key in l_dic:
-        print(l_dic[key].key, l_dic[key].value)
-    lRUCache.get(2)
+    # lRUCache.put(3, 3)
+    # l_dic = lRUCache.cache
+    # for key in l_dic:
+    #     print(l_dic[key].key, l_dic[key].value)
+    # lRUCache.get(2)
     # l_dic = lRUCache.cache
     # for key in l_dic:
     #     print(l_dic[key].key, l_dic[key].value)

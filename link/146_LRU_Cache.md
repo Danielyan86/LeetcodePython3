@@ -17,10 +17,10 @@ class LRUCache:
         self.cache = OrderedDict()
 
     def get(self, key: int) -> int:
-        if key in self.cache:
-            self.cache.move_to_end(key)
-            return self.cache[key]
-        return -1
+        if key not in self.cache: return -1
+        self.cache.move_to_end(key)
+        return self.cache[key]
+
 
     def put(self, key: int, value: int) -> None:
         # need to judge the key existing in dictionary d[k]=v is enough
