@@ -2,37 +2,20 @@ from typing import List
 
 
 class Solution:
-    def removeDuplicates(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
-        if len(nums) == 0:
-            return 0
-        i = 1
-        while i < len(nums):
-            if nums[i] == nums[i - 1]:
-                del nums[i]  # 巧用del关键字，比remove，pop可读性更高
-            else:
-                i += 1
-        print(nums)
-        return i
+    def removeDuplicates(self, nums: List[int]) -> int:
+        if len(nums) == 1:
+            return 1
+        s, f = 0, 1
+        while f < len(nums):
+            if nums[s] != nums[f]:
+                # this actually cover different scenarios, the f-s>1 or f-s==1
+                nums[s + 1] = nums[f]
+                s += 1  # only the 2 numbers are different , s pointer need to move
+            # no matter what happens, the f pointer need to move
+            f += 1
+        return s + 1
 
-    # new version
-    def removeDuplicates2(self, nums: List[int]) -> int:
-        if len(nums) < 2:
-            return len(nums)
-        i = 0
-        j = i + 1
-        while j < len(nums):
-            if nums[i] == nums[j]:
-                del nums[j]
-                continue
-            elif nums[i] < nums[j]:
-                i = i + 1
-                j = i + 1
-        return len(nums)
-
+    # 错误例子，留在这看以前code是多么stupid！
     # 快慢指针实现，相比起第二个实现方案，不会改变原有数组长度，只是把原有的重复数据重新排序
     # 把重复的数据通过交换方式放到后面去，这样慢指针永远是指到的不重复的一个数字
     # 判断的细节要多一些，更容易出错
