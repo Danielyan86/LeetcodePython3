@@ -1,20 +1,19 @@
 import pytest
 from typing import List
 
+import random
+
 
 class Solution:
     def quick(self, nums: List[int]) -> List[int]:
         # 注意递归返回条件
         if len(nums) <= 1:
             return nums
-        if len(nums) == 0:
-            return []
-        pivot = nums[0]
-        # 分区比较
+        pivot = random.choice(nums)
         return (
-            self.quick([x for x in nums[1:] if x <= pivot])
-            + [pivot]
-            + self.quick([x for x in nums[1:] if x > pivot])
+            self.quick([x for x in nums if x < pivot])
+            + [x for x in nums if x == pivot]
+            + self.quick([x for x in nums if x > pivot])
         )
 
 

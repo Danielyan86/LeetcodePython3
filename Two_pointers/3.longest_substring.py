@@ -36,12 +36,9 @@ class Solution(object):
             if s[i] in str_dict and str_dict[s[i]] >= start:
                 # 记录当前字符的值+1
                 start = str_dict[s[i]] + 1
-            # 在此次循环中，最大的不重复子串的长度
-            one_max = i - start + 1
             # 如果是新字符，添加到字典，如果是已经存在的字符，把当前位置覆盖字典中的位置
             str_dict[s[i]] = i
-            # 比较此次循环的最大不重复子串长度和历史循环最大不重复子串长度
-            max_len = max(max_len, one_max)
+            max_len = max(max_len, one_max=i - start + 1)
         return max_len
 
 
