@@ -41,10 +41,9 @@ class Solution(object):
         for index1 in range(len(nums) - 1):
             num1 = nums[index1]
             num2 = target - num1
-            if num2 in nums[index + 1 :]:
+            if num2 in nums[index1 + 1 :]:
                 index2 = nums[index1 + 1 :].index(num2)
                 return [index1, index1 + index2 + 1]
-        return []
 
 
 if __name__ == "__main__":
