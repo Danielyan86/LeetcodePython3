@@ -1,19 +1,22 @@
+# 判断长度
+# 设置空list
+# 先左后右
 class Solution:
-    def isValid(self, s):
-        bracket_stack = []
-        for char in s:
-            if char in "({[":
-                bracket_stack.append(char)
+    def isValid(self, s: str) -> bool:
+        if len(s) % 2 == 1:
+            return False
+        st = []
+        for ch in s:
+            if ch in "([{":
+                st.append(ch)
             else:
-                if bracket_stack:
-                    last_char = bracket_stack.pop()
-                    if f"{last_char}{char}" in ["()", "[]", "{}"]:
-                        continue
-                    else:
-                        return False
-                else:
+                # if not st: return False
+                if not st:
                     return False
-        return True if not bracket_stack else False
+                if st.pop() + ch not in "(){}[]":
+                    return False
+        return False if st else True
+
 
 
 if __name__ == "__main__":
