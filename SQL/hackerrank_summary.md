@@ -1,0 +1,2 @@
+- take the remainder - MOD()
+- remove duplicate - distinct
