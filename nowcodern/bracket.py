@@ -18,7 +18,6 @@ class Solution:
         return False if st else True
 
 
-
 if __name__ == "__main__":
     s = Solution()
     print(s.isValid("{"))

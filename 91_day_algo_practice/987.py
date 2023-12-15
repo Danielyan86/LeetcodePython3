@@ -19,5 +19,5 @@ class Solution:
                 lastcol = col
                 ans.append(list())
             ans[-1].append(value)
-        
+
         return ans

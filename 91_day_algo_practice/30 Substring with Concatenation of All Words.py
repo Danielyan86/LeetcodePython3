@@ -11,9 +11,7 @@ class Solution:
         index = 0
         while index + words_l <= len(s) and index < len(s):
             if s[index : index + word_l] in words_counter:
-                tmp_list = [
-                    s[j : j + word_l] for j in range(index, index + words_l, word_l)
-                ]
+                tmp_list = [s[j : j + word_l] for j in range(index, index + words_l, word_l)]
                 if collections.Counter(tmp_list) == words_counter:
                     res.append(index)
             index += 1

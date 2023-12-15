@@ -10,7 +10,8 @@ class Codec:
         """Encodes a tree to a single string."""
 
         def helper(node):
-            if node is None: return "None"
+            if node is None:
+                return "None"
             return "".join((str(node.val) + "," + helper(node.left) + "," + helper(node.right)))
 
         return helper(root)

@@ -18,4 +18,3 @@ class Solution:
             ans = node.val
         # The last node visited in the bottom row is the leftmost value
         return ans
-
