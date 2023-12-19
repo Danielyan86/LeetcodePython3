@@ -4,34 +4,36 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-
-#
 class Solution:
     def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
-        if not root:
+        # to clear the way in-out direction of left and right
+        # 利用双端队列性质，只要保证每次进入队列是按照一行顺序进入，至于怎么进入不重要，因为两端都可以进出
+        # 因为是双端队列，记住左边弹出右边进入，反之亦然
+        # 注意下层节点顺序，左边弹出时候，下层是先左后右，反之亦然
+        if root is None:
             return []
-        final_nums, node_queue = [], collections.deque()
-        node_queue.append(root)
-        while node_queue:
-            num_tmp = []
-            for _ in range(len(node_queue)):
-                node = node_queue.popleft()
-                num_tmp.append(node.val)
+        que = collections.deque([root])
+        res = []
+        while que:
+            tmp = []
+            for _ in range(len(que)):
+                node = que.popleft()
+                tmp.append(node.val)
                 if node.left:
-                    node_queue.append(node.left)
+                    que.append(node.left)
                 if node.right:
-                    node_queue.append(node.right)
-            final_nums.append(num_tmp)
-            if not node_queue:
-                break
-            num_tmp = []
-            # 需要注意这个时候从左边进入，右边弹出，进入顺序是右节点先进入，因为下一轮又是从左边出来
-            for _ in range(len(node_queue)):
-                node = node_queue.pop()
-                num_tmp.append(node.val)
+                    que.append(node.right)
+            res.append(tmp)
+            if not que:
+                return res
+
+            tmp = []
+            for _ in range(len(que)):
+                node = que.pop()
+                tmp.append(node.val)
                 if node.right:
-                    node_queue.appendleft(node.right)
+                    que.appendleft(node.right)
                 if node.left:
-                    node_queue.appendleft(node.left)
-            final_nums.append(num_tmp)
-        return final_nums
+                    que.appendleft(node.left)
+            res.append(tmp)
+        return res
