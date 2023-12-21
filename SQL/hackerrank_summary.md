@@ -18,4 +18,3 @@
 
 Round up - floor
 Round down - ceil
-    
