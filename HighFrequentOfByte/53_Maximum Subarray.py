@@ -9,33 +9,19 @@ from typing import List
 
 
 class Solution:
-    def maxSubArray(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
-        sub_sum, max_sum = 0, -float("inf")  # 最大值初始值为负无穷
-        for num in nums:
-            if sub_sum >= 0:
-                sub_sum = sub_sum + num
-            else:
-                sub_sum = num
-            max_sum = max(max_sum, sub_sum)
-        return max_sum
-
-
-class Solution2:
     def maxSubArray(self, nums: List[int]) -> int:
-        dp, max_s = [nums[0]], nums[0]
-        for i, num in range(1, len(nums)):
+        if len(nums) == 1:
+            return nums[0]
+        dp = [nums[0]]
+        for i in range(1, len(nums)):
             if dp[i - 1] >= 0:
-                dp.append(dp[i - 1] + num)
+                dp.append(dp[i - 1] + nums[i])
             else:
-                dp.append(num)  # 另起炉灶
+                dp.append(nums[i])
         return max(dp)
 
 
 if __name__ == "__main__":
-    s_obj = Solution2()
-    res = s_obj.maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4])
+    s_obj = Solution()
+    res = s_obj.maxSubArray([5, 4, -1, 7, 8])
     print(res)
