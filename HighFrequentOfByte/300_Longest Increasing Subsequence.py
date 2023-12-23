@@ -5,13 +5,12 @@ from typing import List
 # 如果更大，表示大于前面上升数列的最后一个值，在前面对应的dp上+1，最后取最大值
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
-        n = len(nums)
-        dp = [1] * n
-        for i in range(n - 1):
-            for sub_i in range(i + 1):
-                if nums[i + 1] > nums[sub_i]:
-                    dp[i + 1] = max(dp[i + 1], dp[sub_i] + 1)
-
+        dp = [1] * len(nums)
+        for n in range(1, len(nums)):
+            for pre_n in range(n):
+                if nums[n] > nums[pre_n]:
+                    # 通过max 动态更新pd
+                    dp[n] = max(dp[n], dp[pre_n] + 1)
         return max(dp)
 
 
