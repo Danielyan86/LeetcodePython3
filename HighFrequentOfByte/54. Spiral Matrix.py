@@ -1,3 +1,6 @@
+# 注意边界值处理
+# 初始化四个边界值
+# 对照图看怎么处理边界，搞清楚每次遍历变量和常量
 class Solution:
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
         # 顺时针打印，不断缩小边界
