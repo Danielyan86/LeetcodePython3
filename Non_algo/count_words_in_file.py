@@ -1,12 +1,12 @@
+import collections
+
+
 def count_words_in_file(filename):
     with open(filename) as f:
         content = f.read()
-    word_count = {}
+    word_count = collections.defaultdict(int)
     for word in content.split():
-        if word not in word_count:
-            word_count[word] = 1
-        else:
-            word_count[word] = word_count[word] + 1
+        word_count[word] += 1
     return word_count
 
 
