@@ -9,9 +9,9 @@ class Solution:
 
         # 为什么一定要传入一个i, 因为第三个lst是一个object，如果lst.val 相同则第三个没法比较，从而出错
         # 所以i其实完全没有参与逻辑，只是为了让heap 排序不出错
-        for i, lst in enumerate(lists):
-            if lst:
-                heapq.heappush(min_heap, (lst.val, i, lst))
+        for i, node in enumerate(lists):
+            if node:  #  可能是一个None的 list [None]
+                heapq.heappush(node_lst, (node.val, i, node))
         # Dummy node to simplify the result list construction
         dummy = ListNode()
         current = dummy

@@ -1,6 +1,8 @@
 # 双指针大法
 class Solution:
     def trap(self, height: List[int]) -> int:
+        # 注意结果是个累加值
+        # 哪边小计先算那边 ,不然会漏掉一些内容
         res = l = lh_max = rh_max = 0
         r = len(height) - 1
         while l < r:
