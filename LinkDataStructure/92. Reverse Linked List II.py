@@ -3,25 +3,27 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
+
+
+# 这题思路和k个链表反转还不太一样，
+# 不用写sub function，会超时，因为只有一次反转，可以找到头节点就开始反转，不用找到头尾后才开始
+# left和right是位置，而不是节点，也不是节点值，通过计数找位置
 class Solution:
     def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
-        if head.next == None or right == left:
+        if left == right or head.next is None:
             return head
-        dummy_h = ListNode(None, head)
-        pre, cur = dummy_h, head
-        # 刚开始想复杂了通过简单循环计数就能找到边界，不用做复杂判断
-        # 思路不复杂，但是需要注意细节问题，需要搞清楚翻转链表的起始点
-
-        for _ in range(left - 1):
-            pre, cur = pre.next, cur.next
-        l_start = pre
-        revered_end = cur
-        pre, cur = pre.next, cur.next
-        for _ in range(right - left):
-            pro_tmp = cur.next
-            cur.next = pre
+        dummy_h = ListNode(0, head)
+        pre, cur = None, dummy_h
+        for _ in range(left):
             pre = cur
-            cur = pro_tmp
-        revered_end.next = cur
-        l_start.next = pre
+            cur = cur.next
+        l_start = cur
+        pre1 = None  # 设置临时指针，方便反转链表用
+        for _ in range(right - left + 1):  # 需要注意+1
+            tmp = cur.next
+            cur.next = pre1
+            pre1 = cur
+            cur = tmp
+        pre.next = pre1
+        l_start.next = tmp
         return dummy_h.next

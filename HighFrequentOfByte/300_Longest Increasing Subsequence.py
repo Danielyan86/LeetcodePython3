@@ -23,7 +23,7 @@ class Solution2:
         increase = []
         for x in nums:
             i = bisect_left(increase, x)
-            if i == len(increase):  # x 位置在最后一个，满足升序，直接append
+            if i == len(increase):  # if x 插入位置在最后一个，表示大于维护递增数列最大值，满足升序，直接append
                 increase.append(x)
             else:
                 # 这一步最关键，不满足则直接替换对应位置数字

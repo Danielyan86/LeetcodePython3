@@ -5,10 +5,10 @@ class Solution:
         """
         if len(nums) <= 1:
             return
-
+        # 双指针大法倒着找
         l, r, k = len(nums) - 2, len(nums) - 1, len(nums) - 1
 
-        # find: A[i]<A[j]
+        # find: A[l]<A[r] 倒着找到第一个下降段
         while l >= 0 and nums[l] >= nums[r]:
             l -= 1
             r -= 1
