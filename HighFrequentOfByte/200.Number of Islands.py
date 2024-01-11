@@ -1,6 +1,7 @@
 from typing import List
 
 
+# 注意迷宫存的是string，不是number
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
         def dfs(grid, r, c):
