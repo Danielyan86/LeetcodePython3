@@ -1,9 +1,10 @@
 # two pointers
+# 写法比较tricky，需要注意一下
 class Solution:
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
         pointerA, pointerB = headA, headB
         while pointerA != pointerB:
-            # Move the pointers to the next node
+            # 注意是判断当前指针存在与否，而不是next
             pointerA = pointerA.next if pointerA else headB
             pointerB = pointerB.next if pointerB else headA
 
