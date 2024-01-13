@@ -6,7 +6,7 @@
 
 
 class Solution:
-    # 不要采用取巧的切片操作，多用变量
+    # 不要采用取巧的切片操作，多用变量，这样代码不容易出错
     def longestPalindrome(self, s: str) -> str:
         res = ""
         for i in range(len(s)):

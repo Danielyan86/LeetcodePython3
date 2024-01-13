@@ -17,4 +17,29 @@ class Solution:
                 k -= 1
             nums[l], nums[k] = nums[k], nums[l]
         # 剩下的数字反转
-        nums[r:] = reversed(nums[r:])
+        nums[r:] = nums[r:][::-1]
+
+
+class Solution:
+    def nextPermutation(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        if len(nums) <= 1:
+            return
+        l, r, k = len(nums) - 2, len(nums) - 1, len(nums) - 1
+        while l >= 0:
+            if nums[l] >= nums[r]:
+                l -= 1
+                r -= 1
+            else:
+                break  # 不要忘了break
+        # 如果遍历完了都一直是上升的，那么l，r的值分别为-1，0，
+        # 只有找到了才交换，否则剩下的直接反转
+        if l >= 0:
+            while k > 0:
+                if nums[k] > nums[l]:
+                    nums[l], nums[k] = nums[k], nums[l]
+                    break  # 不要忘了break
+                k -= 1
+        nums[r:] = nums[r:][::-1]
