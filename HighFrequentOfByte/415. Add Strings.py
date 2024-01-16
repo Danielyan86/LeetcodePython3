@@ -1,6 +1,8 @@
 # 思路，两个指针倒着遍历两个字符串  和88有点类似
 # 关键-如果一个指针《0了，则这个数字直接取0，相当于在前面补0，让两个数字长度一样
-# 最后完了记得判断carry，是否需要补一个1    
+# 注意carry，digital的位置顺序
+# 注意res每次叠加顺序
+# 最后完了记得判断carry，是否需要补一个1
 # https://leetcode.cn/problems/add-strings/description/
 # https://leetcode.cn/problems/merge-sorted-array/submissions/495464149/  （88）
 class Solution:
