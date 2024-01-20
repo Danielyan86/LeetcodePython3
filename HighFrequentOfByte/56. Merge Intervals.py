@@ -1,23 +1,21 @@
 from typing import List
-
+# 利用数组单调自增性质
 
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        # 按照list第一个元素大小进行排序
-        intervals.sort(key=lambda x: x[0])
+        # 默认·就是按照数组里面从左往右的顺序排序 不用再单独传lambda
+        if len(intervals) == 1:
+            return intervals
+        intervals.sort()
 
-        res = []
+        merged = list()
         for interval in intervals:
-            # 如果列表为空，或者当前区间与上一区间不重合，直接添加
-            # 比较是和上一个空间右边边界大小
-            if not res or res[-1][1] < interval[0]:
-                res.append(interval)
+            if not merged or merged[-1][1] < interval[0]:
+                merged.append(interval)
             else:
-                # 否则的话，我们就可以与上一区间进行合并
-                # 也就是把右边界更新成更大的那一个
-                res[-1][1] = max(res[-1][1], interval[1])
-
-        return res
+                # 更新右边界即可
+                merged[-1][1] =[] max(merged[-1][1], interval[1])
+        return merged
 
 
 if __name__ == "__main__":
