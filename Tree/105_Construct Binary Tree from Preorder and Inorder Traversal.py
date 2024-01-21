@@ -1,6 +1,13 @@
 # Definition for a binary tree node.
 from typing import List, Optional
 
+# 从上往下递归构造，比回溯大法更容易想到
+# 根据前序数组的第一个元素，就可以确定根节点
+# 用preorder[0]去中序数组中查找对应的元素
+
+# 递归的处理前序数组的左边部分和中序数组的左边部分
+# 递归处理前序数组右边部分和中序数组右边部分
+
 
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -11,23 +18,17 @@ class TreeNode:
 
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
-        n = len(preorder)
-        if 0 == n:
-            return
-        self.p = preorder
-        self.i = inorder
-        return self.buildTree_heler(0, n - 1, 0, n - 1)
-
-    def buildTree_heler(self, inorder_l, inorder_r, preorder_l, preorder_r):
-        if inorder_l > inorder_r:
+        if not preorder or not inorder:
             return None
 
-        node = TreeNode(self.p[preorder_l])
-        i_root_index = self.i.index(self.p[preorder_l])
-        left_tree_size = i_root_index - inorder_l
-        node.left = self.buildTree_heler(inorder_l, i_root_index - 1, preorder_l + 1, preorder_l + left_tree_size)
-        node.right = self.buildTree_heler(i_root_index + 1, inorder_r, preorder_l + left_tree_size + 1, preorder_r)
-        return node
+        root_val = preorder.pop(0)
+        root_idx = inorder.index(root_val)
+
+        root = TreeNode(root_val)
+        root.left = self.buildTree(preorder, inorder[:root_idx])
+        root.right = self.buildTree(preorder, inorder[root_idx + 1 :])
+
+        return root
 
 
 if __name__ == "__main__":
