@@ -1,5 +1,7 @@
 from typing import List
+
 # 利用数组单调自增性质
+
 
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
@@ -14,7 +16,7 @@ class Solution:
                 merged.append(interval)
             else:
                 # 更新右边界即可
-                merged[-1][1] =[] max(merged[-1][1], interval[1])
+                merged[-1][1] = max(merged[-1][1], interval[1])
         return merged
 
 
