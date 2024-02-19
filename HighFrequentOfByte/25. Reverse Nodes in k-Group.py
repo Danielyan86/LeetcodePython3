@@ -28,13 +28,14 @@ class Solution:
         pre = cur = dummy_h
         while cur:
             for _ in range(k):
-                if cur is None or cur.next is None:  # 注意多加一个nex为None的判断
-                    return dummy_h.next
+                cur = cur.next  # 先移动，再判断
+                if cur is None:
+                    return dummy.next
                 cur = cur.next
             tmp = cur.next
             h, t = reverse_link(pre.next, cur)
             pre.next = h
             t.next = tmp
-            pre = cur = t  # 指向新的起点，也就是反转后的尾节点，相当于刚开始的dummy头
+            pre = cur = t  # 指向新的起点，也就是反转后的尾节点，相当于刚开始的dummy头，cur也需要重制
 
         return dummy_h.next
