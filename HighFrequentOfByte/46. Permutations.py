@@ -2,6 +2,9 @@
 # 一开始就通过for循环分成了n叉树
 # 在每一个子树里面遍历全局的列表，如果元素已经存在了，则跳过
 # 最后每个子树列表长度和传入列表一样的时候表示已经遍历了，加入结果res即可
+from typing import List
+
+
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         def traceback(lst):
@@ -15,3 +18,9 @@ class Solution:
         res = []
         traceback([])
         return res
+
+
+if __name__ == "__main__":
+    s = Solution()
+    res = s.permute([1, 2, 3])
+    print(res)
