@@ -24,11 +24,30 @@ Write an efficient algorithm for the following assumptions:
 
 N is an integer within the range [1..2,147,483,647].
 
-
 ## solution
+
 1. if we use the split method to convert the string into list and calculate the length of each list, the it need an extra space.
 2. use iterate way to solve it
 
 ## some extra key points
--  only need to strip the right 0
--  the split method of python naturally remove the split diameter
+
+- only need to strip the right 0
+- the split method of python naturally remove the split diameter
+
+## 破题
+
+### 主干
+
+分析题之后，其实主任务就是数两个 1 之前的 0 的个数，因此一遍循环就可以搞定。也就是每次遇到 1 的时候计数器置 0，然后开始数数
+
+### 分支
+
+- 数字需要转化成字符串，利用内置函数 bin
+- 去掉前面的标志位, OB
+- bin 之后左边是不会有 0 的
+- 可以直接用 split 方法，但是会占用额外的内存空间
+
+### 测试用例
+
+如果是一个参数的用例，直接写传入的值
+如果是多个，采用这种格式([3, 8, 9, 7, 6], 3)

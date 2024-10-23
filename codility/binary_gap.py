@@ -19,7 +19,7 @@ def solution(N: int):
         "0"
     )  # this method ensure the the string start and end end number is 1
     longest_gap = current_gap = 0
-    for n in bin_str:
+    for n in bin_str:  # whenever meet the 1, start to count the 0
         if n == "1":
             current_gap = 0
         elif n == "0":

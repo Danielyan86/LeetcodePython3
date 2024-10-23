@@ -2,6 +2,7 @@
 #  考虑各种边界条件
 # 考虑计数出发条件和算法，
 # 0必须在1前面，如果是连续的000+11，只用取小的个数再*2，
+# https://leetcode.com/problems/find-the-longest-balanced-substring-of-a-binary-string/description/
 class Solution:
     def findTheLongestBalancedSubstring(self, s: str) -> int:
         n = len(s)
