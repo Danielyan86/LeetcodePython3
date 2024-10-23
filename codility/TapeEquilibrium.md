@@ -1,0 +1,45 @@
+A non-empty array A consisting of N integers is given. Array A represents numbers on a tape.
+
+Any integer P, such that 0 < P < N, splits this tape into two non-empty parts: A[0], A[1], ..., A[P − 1] and A[P], A[P + 1], ..., A[N − 1].
+
+The difference between the two parts is the value of: |(A[0] + A[1] + ... + A[P − 1]) − (A[P] + A[P + 1] + ... + A[N − 1])|
+
+In other words, it is the absolute difference between the sum of the first part and the sum of the second part.
+
+For example, consider array A such that:
+
+A[0] = 3
+A[1] = 1
+A[2] = 2
+A[3] = 4
+A[4] = 3
+We can split this tape in four places:
+
+P = 1, difference = |3 − 10| = 7
+P = 2, difference = |4 − 9| = 5
+P = 3, difference = |6 − 7| = 1
+P = 4, difference = |10 − 3| = 7
+Write a function:
+
+def solution(A)
+
+that, given a non-empty array A of N integers, returns the minimal difference that can be achieved.
+
+For example, given:
+
+A[0] = 3
+A[1] = 1
+A[2] = 2
+A[3] = 4
+A[4] = 3
+the function should return 1, as explained above.
+
+Write an efficient algorithm for the following assumptions:
+
+N is an integer within the range [2..100,000];
+each element of array A is an integer within the range [−1,000..1,000].
+
+## solution
+
+其实就是遍历一个数组，每次遍历这个点作为左右分割点，求左右两边的绝对值
+很容易想到左右两边用 sum 求和，这样明显效率不高，因为每次左右两边需要重复计算，所以先求和，左边每次加一个数字即可，剩下就变就用总和减去左边的和

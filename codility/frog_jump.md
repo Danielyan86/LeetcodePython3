@@ -1,0 +1,56 @@
+However, the purpose of such questions in technical interviews like Codility isn't necessarily about the **complexity** of the problem but more about other key aspects of problem-solving, such as:
+
+### 1. **Efficiency**:
+
+The problem requires an efficient solution that runs in constant time **O(1)**. In a coding test, ensuring that your solution can handle the upper constraint (e.g., `X = 1`, `Y = 1,000,000,000`, `D = 1`) efficiently is crucial. A brute-force simulation of jumps would take too long, so understanding how to arrive at the solution in constant time shows the interviewer's knowledge of time complexity.
+
+### 2. **Understanding Basic Mathematical Concepts**:
+
+At the core of this problem, the interviewer wants to see if you can transform a word problem into a simple mathematical formula. Specifically, it tests your ability to:
+
+- Calculate the minimal number of steps (`(Y - X) / D`),
+- Handle cases where you may need to round up, which involves understanding how to apply ceiling division using integer arithmetic.
+
+### 3. **Edge Case Handling**:
+
+Even for simple problems, how a candidate handles edge cases is important. This question prompts you to think about:
+
+- What if `X == Y`? In this case, no jumps are needed.
+- What if `Y - X` is exactly divisible by `D`? You don’t need an extra jump.
+- Testing if your solution works correctly with minimal and maximal values in the input ranges.
+
+### 4. **Attention to Detail**:
+
+A candidate who misses details like handling edge cases correctly might write a solution that works for most cases but fails in certain conditions. The ability to pay attention to and correctly handle these scenarios shows precision and thoroughness.
+
+### Key Concepts Being Tested:
+
+- **Mathematical Optimization**: Efficiently calculating minimal steps using integer arithmetic.
+- **Edge Case Awareness**: Considering small and large values for input parameters.
+- **Logical Thinking**: Translating a real-world problem into a mathematical formula.
+
+### Sample Solution in Java:
+
+```java
+class Solution {
+    public int solution(int X, int Y, int D) {
+        // Calculate the number of jumps required
+        return (int) Math.ceil((double)(Y - X) / D);
+    }
+}
+```
+
+Alternatively, you can avoid using `Math.ceil` by applying integer arithmetic directly:
+
+```java
+class Solution {
+    public int solution(int X, int Y, int D) {
+        // Calculate the minimal number of jumps, rounding up if necessary
+        return (Y - X + D - 1) / D;
+    }
+}
+```
+
+### Conclusion:
+
+The key takeaway is that this type of problem isn't necessarily about complexity but about how well you can apply simple, efficient logic and account for boundary conditions. These "easy" problems help interviewers assess your clarity of thought, attention to detail, and ability to write optimized code.
