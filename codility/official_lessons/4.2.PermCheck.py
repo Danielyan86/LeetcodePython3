@@ -29,7 +29,7 @@ def solution(A):
     unique_elements = set()
 
     for element in A:
-        # Check if element is within the range [1..N]
+        # Check if element is within the range [1..N], if the element is out of range, end the function early
         if element < 1 or element > N:
             return 0
         unique_elements.add(element)
