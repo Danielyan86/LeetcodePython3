@@ -1,8 +1,14 @@
+# 这道题的问题在于要理解加法顺序，平时我们是从左往右写数字，也就是高位在左边，但是具体计算的时候是从右往左计算
+# 因此左边是低位，刚好符合计算习惯，不用逆向遍历
+# 需要注意处理位数对不齐的情况
+# 加法计算需要处理进位情况 可以直接使用divmod函数
+# 主要注意返回是一个list node，不是一个整数！搞清楚节点的挂载和赋值
+
 # Definition for singly-linked list.
-class ListNode(object):
-    def __init__(self, x):
-        self.val = x
-        self.next = None
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 
 
 class Solution(object):
@@ -12,39 +18,22 @@ class Solution(object):
         :type l2: ListNode
         :rtype: ListNode
         """
-        l1_list, l2_list = self.convert_node_into_list(l1), self.convert_node_into_list(l2)
-        l1_str = ""
-        for i in l1_list[::-1]:
-            l1_str = l1_str + str(i)
-        l2_str = ""
-        for i in l2_list[::-1]:
-            l2_str = l2_str + str(i)
-        res = str(int(l1_str) + int(l2_str))
+        dummy = ListNode(0)
+        current = dummy
+        carry = 0
 
-        node_list = [ListNode(int(i)) for i in res[::-1]]
-        for i in range(0, len(node_list) - 1):
-            node_list[i].next = node_list[i + 1]
-        return node_list[0]
+        while l1 or l2 or carry:
+            val1 = l1.val if l1 else 0
+            val2 = l2.val if l2 else 0
 
-    def convert_node_into_list(self, node_p):
-        converted_list = [node_p.val]
-        next_node = node_p.next
-        while next_node:
-            converted_list.append(next_node.val)
-            next_node = next_node.next
-        return converted_list
+            total = val1 + val2 + carry
+            carry = total // 10
+            current.next = ListNode(total % 10)
 
+            current = current.next
+            if l1:
+                l1 = l1.next
+            if l2:
+                l2 = l2.next
 
-if __name__ == "__main__":
-    # last_node = ListNode(3)
-    middle_node = ListNode(8)
-    # middle_node.next = last_node
-    l1 = ListNode(1)
-    l1.next = middle_node
-    last_node = ListNode(4)
-    middle_node = ListNode(6)
-    middle_node.next = last_node
-    l2 = ListNode(5)
-    l2.next = middle_node
-    s_obj = Solution()
-    print(s_obj.addTwoNumbers(l1, ListNode(0)))
+        return dummy.next

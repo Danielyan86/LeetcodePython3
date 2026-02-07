@@ -13,7 +13,9 @@ class Solution:
         for i, v in enumerate(nums):
             if i < len(nums) - 2:
                 l, r = i + 1, len(nums) - 1
-                if i > 0 and nums[i] == nums[i - 1]:
+                if (
+                    i > 0 and nums[i] == nums[i - 1]
+                ):  # 查看当前和前一个是否相同，直接去重，
                     continue
                 while l < r:
                     sum3 = v + nums[l] + nums[r]
