@@ -2,34 +2,26 @@ from typing import List
 
 
 class Solution:
-    def threeSumClosest(self, nums, target):
-        """
-        :type nums: List[int]
-        :type target: int
-        :rtype: int
-        """
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
         if len(nums) == 3:
             return sum(nums)
         nums.sort()
-        difference_num = float("inf")
-        for i in range(len(nums)):
-            if i == 0 or nums[i] > nums[i - 1]:
-                left_point = i + 1  # 指针每次不用从第一个开始，因为加法交换律
-                right_point = len(nums) - 1
-                while left_point < right_point:
-                    three_sum = nums[i] + nums[left_point] + nums[right_point]
-                    res = three_sum - target
-                    if res == 0:
-                        return three_sum
-                    elif res < 0:
-                        if abs(res) < difference_num:  # 判定更新结果条件
-                            result = three_sum
-                        left_point += 1
-                    elif res > 0:
-                        if abs(res) < difference_num:
-                            result = three_sum
-                        right_point -= 1
-                    difference_num = min(abs(res), difference_num)
+        diff_pre = float("inf")  # 假设初始值距离无限远，并且假设是上一次的差值，和dummy node类似
+        for i, v in enumerate(nums):
+            l, r = i + 1, len(nums) - 1
+            while l < r:
+                sum3 = v + nums[l] + nums[r]
+                diff = sum3 - target
+                if diff == 0:
+                    return v + nums[l] + nums[r]
+                elif diff > 0:
+                    r -= 1
+                elif diff < 0:
+                    l += 1
+                if abs(diff) < abs(diff_pre):
+                    result = sum3
+                    diff_pre = diff
+
         return result
 
     def threeSumClosest2(self, nums: List[int], target: int) -> int:
