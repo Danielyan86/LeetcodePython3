@@ -5,14 +5,12 @@ class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
         if len(nums) == 1:
             return 1
-        s, f = 0, 1
+        s, f = 0, 1  # 快慢指针初始化
         while f < len(nums):
-            if nums[s] != nums[f]:
-                # this actually cover different scenarios, the f-s>1 or f-s==1
-                nums[s + 1] = nums[f]
-                s += 1  # only the 2 numbers are different , s pointer need to move
-            # no matter what happens, the f pointer need to move
-            f += 1
+            if nums[s] != nums[f]:  # 这里很tricky，为什么是移动慢指针的下一个，因为快指针有越界风险
+                nums[s + 1] = nums[f]  # 核心代码其实就这一句，用后面不重复数字覆盖前面重复个数字
+                s += 1
+            f += 1  # 无论什么情况快指针都需要移动一格
         return s + 1
 
     # 错误例子，留在这看以前code是多么stupid！
