@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>删除链表倒数第N个节点 - 双指针可视化</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .explanation {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 4px solid #667eea;
+        }
+
+        .explanation h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .explanation ol {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        input[type="number"] {
+            padding: 8px 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            width: 80px;
+        }
+
+        button {
+            padding: 10px 24px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .visualization {
+            background: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            margin-bottom: 20px;
+            min-height: 300px;
+            position: relative;
+        }
+
+        .linked-list {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 80px;
+            flex-wrap: wrap;
+        }
+
+        .node-container {
+            position: relative;
+        }
+
+        .node {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s;
+        }
+
+        .node.to-delete {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .arrow {
+            width: 40px;
+            height: 2px;
+            background: #667eea;
+            position: relative;
+        }
+
+        .arrow::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -4px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid #667eea;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+        }
+
+        .pointer {
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .fast-pointer {
+            background: #f093fb;
+            color: white;
+            top: -60px;
+        }
+
+        .slow-pointer {
+            background: #4facfe;
+            color: white;
+            top: -30px;
+        }
+
+        .status {
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #4caf50;
+        }
+
+        .status-text {
+            color: #2e7d32;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+
+        .step-info {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .phase-label {
+            display: inline-block;
+            padding: 6px 16px;
+            background: #fff3e0;
+            color: #e65100;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔗 删除链表倒数第N个节点</h1>
+        <p class="subtitle">双指针（快慢指针）可视化演示</p>
+
+        <div class="explanation">
+            <h3>💡 核心思路（距离差思维）</h3>
+            <ol>
+                <li><strong>建立距离差：</strong>快指针先走 n 步 → 快慢指针相差 n 个节点</li>
+                <li><strong>保持距离差：</strong>快慢指针同步移动 → 距离差始终保持为 n</li>
+                <li><strong>利用距离差：</strong>当快指针到末尾时 → 慢指针自然在倒数第 n 个位置</li>
+                <li><strong>删除节点：</strong>慢指针的 next 指向 next.next，跳过目标节点</li>
+            </ol>
+            <p style="margin-top: 10px; color: #e65100; font-weight: 600;">
+                🎯 关键：快慢指针距离始终 = n
+            </p>
+        </div>
+
+        <div class="controls">
+            <div class="control-group">
+                <label>链表长度：</label>
+                <input type="number" id="listLength" min="1" max="10" value="5">
+            </div>
+            <div class="control-group">
+                <label>删除倒数第：</label>
+                <input type="number" id="nValue" min="1" max="10" value="2">
+                <span>个节点</span>
+            </div>
+            <button onclick="reset()">重置</button>
+            <button onclick="nextStep()" id="nextBtn">下一步</button>
+            <button onclick="autoPlay()" id="autoBtn">自动播放</button>
+        </div>
+
+        <div class="visualization">
+            <div class="step-info" id="stepInfo"></div>
+            <div id="phaseLabel"></div>
+            <div class="linked-list" id="linkedList"></div>
+        </div>
+
+        <div class="status">
+            <div class="status-text" id="statusText">点击"下一步"开始演示</div>
+        </div>
+    </div>
+
+    <script>
+        let listLength = 5;
+        let n = 2;
+        let step = 0;
+        let fastPtr = 0;
+        let slowPtr = 0;
+        let phase = 'init'; // init, phase1 (fast runs), phase2 (both run), delete
+        let autoPlayInterval = null;
+        let nodes = [];
+
+        function init() {
+            listLength = parseInt(document.getElementById('listLength').value);
+            n = parseInt(document.getElementById('nValue').value);
+
+            if (n > listLength) {
+                alert('n 不能大于链表长度！');
+                return;
+            }
+
+            step = 0;
+            fastPtr = 0;
+            slowPtr = 0;
+            phase = 'init';
+
+            nodes = Array.from({length: listLength}, (_, i) => i + 1);
+            render();
+        }
+
+        function render() {
+            const container = document.getElementById('linkedList');
+            container.innerHTML = '';
+
+            nodes.forEach((val, idx) => {
+                const nodeContainer = document.createElement('div');
+                nodeContainer.className = 'node-container';
+
+                const node = document.createElement('div');
+                node.className = 'node';
+
+                // 标记要删除的节点
+                if (phase === 'delete' && idx === listLength - n) {
+                    node.classList.add('to-delete');
+                }
+
+                node.textContent = val;
+
+                // 添加指针
+                if (idx === fastPtr && phase !== 'delete') {
+                    const fastPointer = document.createElement('div');
+                    fastPointer.className = 'pointer fast-pointer';
+                    fastPointer.textContent = '快指针 ⚡';
+                    nodeContainer.appendChild(fastPointer);
+                }
+
+                if (idx === slowPtr && (phase === 'phase2' || phase === 'delete')) {
+                    const slowPointer = document.createElement('div');
+                    slowPointer.className = 'pointer slow-pointer';
+                    slowPointer.textContent = '慢指针 🐢';
+                    nodeContainer.appendChild(slowPointer);
+                }
+
+                nodeContainer.appendChild(node);
+                container.appendChild(nodeContainer);
+
+                // 添加箭头（除了最后一个节点）
+                if (idx < nodes.length - 1) {
+                    const arrow = document.createElement('div');
+                    arrow.className = 'arrow';
+                    container.appendChild(arrow);
+                }
+            });
+
+            updateStatus();
+        }
+
+        function updateStatus() {
+            const stepInfo = document.getElementById('stepInfo');
+            const statusText = document.getElementById('statusText');
+            const phaseLabel = document.getElementById('phaseLabel');
+
+            stepInfo.textContent = `步骤 ${step}`;
+
+            if (phase === 'init') {
+                phaseLabel.innerHTML = '<div class="phase-label">初始状态</div>';
+                statusText.innerHTML = `链表长度：${listLength}，需要删除倒数第 ${n} 个节点（节点值 ${nodes[listLength - n]}）<br>准备开始：快指针将先走 ${n} 步建立距离差`;
+            } else if (phase === 'phase1') {
+                phaseLabel.innerHTML = '<div class="phase-label">阶段1：建立距离差 n</div>';
+                const currentGap = fastPtr - slowPtr;
+                statusText.innerHTML = `快指针位置：${fastPtr + 1}，慢指针位置：${slowPtr + 1}<br>当前距离差：${currentGap}，目标距离差：${n}<br>🎯 快指针还需走 ${n - fastPtr} 步`;
+            } else if (phase === 'phase2') {
+                phaseLabel.innerHTML = '<div class="phase-label">阶段2：保持距离差 n</div>';
+                const remaining = listLength - fastPtr - 1;
+                const gap = fastPtr - slowPtr;
+                statusText.innerHTML = `快指针位置：${fastPtr + 1}，慢指针位置：${slowPtr + 1}<br>🎯 距离差：${gap}（保持不变）<br>距离末尾还有 ${remaining} 步`;
+            } else if (phase === 'delete') {
+                phaseLabel.innerHTML = '<div class="phase-label">完成</div>';
+                statusText.innerHTML = `✅ 快指针到达末尾，慢指针在倒数第 ${n} 个节点之前<br>🎯 距离差始终保持：${n}<br>删除节点 ${nodes[listLength - n]}`;
+            }
+        }
+
+        function nextStep() {
+            if (phase === 'init') {
+                phase = 'phase1';
+                step++;
+                render();
+            } else if (phase === 'phase1') {
+                fastPtr++;
+                step++;
+
+                if (fastPtr >= n) {
+                    phase = 'phase2';
+                }
+                render();
+            } else if (phase === 'phase2') {
+                fastPtr++;
+                slowPtr++;
+                step++;
+
+                if (fastPtr >= listLength) {
+                    phase = 'delete';
+                }
+                render();
+            } else if (phase === 'delete') {
+                alert('演示已完成！点击"重置"重新开始');
+            }
+        }
+
+        function reset() {
+            if (autoPlayInterval) {
+                clearInterval(autoPlayInterval);
+                autoPlayInterval = null;
+                document.getElementById('autoBtn').textContent = '自动播放';
+            }
+            init();
+        }
+
+        function autoPlay() {
+            const btn = document.getElementById('autoBtn');
+
+            if (autoPlayInterval) {
+                clearInterval(autoPlayInterval);
+                autoPlayInterval = null;
+                btn.textContent = '自动播放';
+            } else {
+                btn.textContent = '暂停';
+                autoPlayInterval = setInterval(() => {
+                    if (phase === 'delete') {
+                        clearInterval(autoPlayInterval);
+                        autoPlayInterval = null;
+                        btn.textContent = '自动播放';
+                    } else {
+                        nextStep();
+                    }
+                }, 1000);
+            }
+        }
+
+        // 初始化
+        init();
+    </script>
+</body>
+</html>
