@@ -31,22 +31,47 @@
 
 ## 解题思路
 
-### 方法一：迭代法 ⭐️ 推荐
+### 核心要点
 
-# 思路并不复杂，但是实际处理交换时候还是有点绕。 需要注意这么几点
-# 每次需要往后判断两个节点，因为实际是跳两个格子后交换
-# 添加两个临时变量存储节点，这样比较方便，用更多空间增加可读性
-# 具体交换时候搞清楚顺序，什么操作是移动指针，什么操作是简历链接
+1.注意是否继续遍历的判定条件，每次需要往后判断两个节点
+2. 注意两个节点教会时候的具体顺序，借助图形化思考
+3. 每次节点往后移动两个节点
+4. 重置当前节点往后的两个节点
+5. 
+
+### 代码实现
+
+```python
 class Solution:
     def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        if head is None or head.next is None: return head
-        dummy = ListNode(val=0, next=head)
-        pre = dummy
-        while pre.next and pre.next.next:
-            cur, nt = pre.next, pre.next.next
-            cur.next = nt.next
-            pre.next = nt
-            nt.next = cur
-            pre =cur
+        # 递归终止条件
+        if not head or not head.next:
+            return head
 
-        return dummy.next
+        # 保存第二个节点
+        second = head.next
+
+        # 递归处理后续部分，并连接到第一个节点
+        head.next = self.swapPairs(second.next)
+
+        # 交换：让第二个节点指向第一个
+        second.next = head
+
+        # 返回新的头节点（原来的第二个节点）
+        return second
+```
+
+### 复杂度分析
+
+- **时间复杂度**: O(n)
+- **空间复杂度**: O(n) - 递归调用栈深度
+
+## 相关题目
+
+- [206. Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/) - 反转链表基础
+- [25. Reverse Nodes in k-Group](https://leetcode.com/problems/reverse-nodes-in-k-group/) - 本题的进阶版，每 k 个一组反转
+- [92. Reverse Linked List II](https://leetcode.com/problems/reverse-linked-list-ii/) - 反转部分链表
+
+## 标签
+
+`Linked List` `Recursion` `Two Pointers`
